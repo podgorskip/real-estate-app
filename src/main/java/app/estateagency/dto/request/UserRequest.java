@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class ClientRequest {
+public class UserRequest {
     @NotBlank(message = "First name cannot be blank")
     @Size(max = 100, message = "First name cannot be longer than 100 characters")
     private String firstName;
@@ -17,7 +17,7 @@ public class ClientRequest {
     private String lastName;
 
     @NotBlank(message = "Username cannot be blank")
-    @Size(max = 50, message = "Username cannot be longer than 50 characters")
+    @Size(max = 50, min = 5, message = "Username cannot be longer than 50 or shorter than 5 characters")
     private String username;
 
     @NotBlank(message = "Password cannot be blank")

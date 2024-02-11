@@ -1,2 +1,6 @@
-package app.estateagency.enums;public class Privilege {
+package app.estateagency.enums;
+
+public enum Privilege {
+    CHANGE_PASSWORD, CHANGE_CREDENTIALS, CHECK_OFFERS, REPORT_OFFER, ADD_OFFER,
+    ADD_AGENT, REMOVE_USER, CHECK_CALENDAR, ADD_MEETINGS
 }

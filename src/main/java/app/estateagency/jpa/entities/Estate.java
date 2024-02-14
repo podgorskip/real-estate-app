@@ -2,7 +2,7 @@ package app.estateagency.jpa.entities;
 
 import app.estateagency.enums.estate.Availability;
 import app.estateagency.enums.estate.Condition;
-import app.estateagency.enums.credit.EstateType;
+import app.estateagency.enums.estate.EstateType;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -41,10 +41,12 @@ public class Estate {
 
     private String description;
 
+    @Enumerated(value = EnumType.STRING)
     private Availability availability;
 
     private double size;
 
+    @Enumerated(value = EnumType.STRING)
     private Condition condition;
 
     private double offeredPrice;

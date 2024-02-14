@@ -18,9 +18,11 @@ public class Photo {
 
     private String filename;
 
+    private String filePath;
+
     private String contentType;
 
-    private int fileSize;
+    private Long fileSize;
 
     private LocalDateTime uploadDate;
 

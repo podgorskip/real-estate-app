@@ -23,10 +23,6 @@ public class CustomerMeeting {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "offer_id")
-    private Offer offer;
-
-    @ManyToOne
     @JoinColumn(name = "agent_id")
     private Agent agent;
 

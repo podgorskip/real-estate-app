@@ -1,5 +1,5 @@
 package app.estateagency.enums.credit;
 
-public enum EducationStatus {
+public enum EducationLevel {
     NO_FORMAL, PRIMARY, SECONDARY, VOCATIONAL, POST_SECONDARY, GRADUATE
 }

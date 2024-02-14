@@ -22,20 +22,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final CustomerService customerService;
-    private final OwnerService ownerService;
-
-    @PostMapping("/auth/customer/register")
-    public ResponseEntity<Response> registerCustomer(@Valid @RequestBody UserRequest userRequest) {
-        Response response = customerService.createCustomerAccount(userRequest);
-        return ResponseEntity.status(response.getStatus()).body(response);
-    }
-
-    @PostMapping("/auth/owner/register")
-    public ResponseEntity<Response> registerOwner(@Valid @RequestBody UserRequest userRequest) {
-        Response response = ownerService.createOwnerAccount(userRequest);
-        return ResponseEntity.status(response.getStatus()).body(response);
-    }
 
     @RequiredPrivilege(Privilege.CHANGE_CREDENTIALS)
     @PatchMapping("/update-credentials")

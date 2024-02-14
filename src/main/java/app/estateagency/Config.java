@@ -3,9 +3,7 @@ package app.estateagency;
 import app.estateagency.security.DatabaseUserDetailsService;
 import app.estateagency.security.JwtFilter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -20,9 +18,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableJpaRepositories
+@EnableAspectJAutoProxy
 @EnableWebSecurity
 @ComponentScan
 @RequiredArgsConstructor
+@PropertySource("classpath:application.properties")
 public class Config {
     private final DatabaseUserDetailsService databaseUserDetailsService;
     private final JwtFilter jwtFilter;

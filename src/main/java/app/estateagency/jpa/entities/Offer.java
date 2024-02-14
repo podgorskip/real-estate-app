@@ -24,12 +24,6 @@ public class Offer {
     private LocalDateTime postDate;
 
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
-    private Set<OwnerMeeting> ownerMeetings;
-
-    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
-    private Set<CustomerMeeting> customerMeetings;
-
-    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
     private Set<OfferVisit> offerVisits;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

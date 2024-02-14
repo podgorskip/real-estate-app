@@ -18,7 +18,11 @@ public class Document {
 
     private String filename;
 
-    private String description;
+    private String filePath;
+
+    private Long fileSize;
+
+    private String contentType;
 
     private LocalDateTime uploadDate;
 

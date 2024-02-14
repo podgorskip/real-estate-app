@@ -26,9 +26,5 @@ public class OwnerMeeting {
     @JoinColumn(name = "agent_id")
     private Agent agent;
 
-    @ManyToOne
-    @JoinColumn(name = "offer_id")
-    private Offer offer;
-
     private LocalDateTime date;
 }

@@ -1,6 +1,6 @@
 package app.estateagency.jpa.entities;
 
-import app.estateagency.enums.credit.EducationStatus;
+import app.estateagency.enums.credit.EducationLevel;
 import app.estateagency.enums.credit.EmploymentStatus;
 import app.estateagency.enums.credit.Gender;
 import app.estateagency.enums.credit.MaritalStatus;
@@ -32,7 +32,7 @@ public class CreditWorthinessInfo {
     private double debts;
 
     @Enumerated(value = EnumType.STRING)
-    private EducationStatus educationStatus;
+    private EducationLevel educationLevel;
 
     @Enumerated(value = EnumType.STRING)
     private Gender gender;

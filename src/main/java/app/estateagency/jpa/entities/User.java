@@ -31,4 +31,8 @@ public class User {
     private Role role;
 
     private boolean verified;
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

@@ -29,4 +29,37 @@ public interface Mapper {
     @Mapping(source = "meeting.user.fullName", target = "user")
     @Mapping(source = "meeting.agent.user.fullName", target = "agent")
     MeetingResponse convertMeetings(Meeting meeting);
+
+
+    @Mapping(source = "offer.estate.agent.id", target = "agentID")
+    @Mapping(source = "offer.estate.agent.user.fullName", target = "agent")
+    @Mapping(source = "offer.estate.type", target = "type")
+    @Mapping(source = "offer.estate.bathrooms", target = "bathrooms")
+    @Mapping(source = "offer.estate.rooms", target = "rooms")
+    @Mapping(source = "offer.estate.garage", target = "garage")
+    @Mapping(source = "offer.estate.storey", target = "storey")
+    @Mapping(source = "offer.estate.location", target = "location")
+    @Mapping(source = "offer.estate.balcony", target = "balcony")
+    @Mapping(source = "offer.estate.availability", target = "availability")
+    @Mapping(source = "offer.estate.size", target = "size")
+    @Mapping(source = "offer.estate.condition", target = "condition")
+    OfferResponse convertOffer(Offer offer);
+
+    @Mapping(source = "archivedOffer.estate.agent.id", target = "agentID")
+    @Mapping(source = "archivedOffer.estate.agent.user.fullName", target = "agent")
+    @Mapping(source = "archivedOffer.estate.owner.user.if", target = "ownerID")
+    @Mapping(source = "archivedOffer.estate.owner.user.fullName", target = "owner")
+    @Mapping(source = "archivedOffer.customer.user.fullName", target = "customerID")
+    @Mapping(source = "archivedOffer.customer.user.fullName", target = "customer")
+    @Mapping(source = "archivedOffer.estate.type", target = "type")
+    @Mapping(source = "archivedOffer.estate.bathrooms", target = "bathrooms")
+    @Mapping(source = "archivedOffer.estate.rooms", target = "rooms")
+    @Mapping(source = "archivedOffer.estate.garage", target = "garage")
+    @Mapping(source = "archivedOffer.estate.storey", target = "storey")
+    @Mapping(source = "archivedOffer.estate.location", target = "location")
+    @Mapping(source = "archivedOffer.estate.balcony", target = "balcony")
+    @Mapping(source = "archivedOffer.estate.availability", target = "availability")
+    @Mapping(source = "archivedOffer.estate.size", target = "size")
+    @Mapping(source = "archivedOffer.estate.condition", target = "condition")
+    ArchivedOfferResponse convertArchivedOffer(ArchivedOffer archivedOffer);
 }

@@ -2,7 +2,7 @@ package app.estateagency.services;
 
 import app.estateagency.dto.request.ReviewRequest;
 import app.estateagency.dto.response.Response;
-import app.estateagency.jpa.entities.HistoryOffer;
+import app.estateagency.jpa.entities.ArchivedOffer;
 import app.estateagency.jpa.entities.Review;
 import app.estateagency.jpa.entities.User;
 import app.estateagency.jpa.repositories.ReviewRepository;
@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final UserService userService;
-    private final HistoryOfferService historyOfferService;
+    private final ArchivedOfferService archivedOfferService;
 
     /**
      * Allows to review an offer from the finished transactions
@@ -37,8 +38,33 @@ public class ReviewService {
         if (user.isEmpty())
             return new Response(false, HttpStatus.NOT_FOUND, "No account of the provided username found");
 
+        Optional<ArchivedOffer> archivedOffer = archivedOfferService.getByID(id);
 
+        if (archivedOffer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No archived offer of the provided ID found");
+
+        reviewRepository.save(createReview(user.get(), archivedOffer.get(), reviewRequest));
+
+        return new Response(true, HttpStatus.CREATED, "Successfully reviewed the transaction");
     }
 
-    private Review createReview(User user, HistoryOffer historyOffer, ReviewRequest reviewRequest)
+    /**
+     * Allows to create a fully populated Review instance
+     * @param user User who reviews the transaction
+     * @param archivedOffer Archived offer which is reviewed
+     * @param reviewRequest Details containing review details
+     * @return Fully populated Review instance
+     */
+    private Review createReview(User user, ArchivedOffer archivedOffer, ReviewRequest reviewRequest)  {
+        Review review = new Review();
+
+        review.setUser(user);
+        review.setAgent(archivedOffer.getEstate().getAgent());
+        review.setArchivedOffer(archivedOffer);
+        review.setRating(reviewRequest.getRating());
+        review.setComment(reviewRequest.getComment());
+        review.setRole(user.getRole());
+
+        return review;
+    }
 }

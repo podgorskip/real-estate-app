@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 public class OfferResponse {
+    private Long id;
     private Long agentID;
     private String agent;
     private EstateType type;

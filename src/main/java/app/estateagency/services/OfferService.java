@@ -9,6 +9,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -36,6 +38,18 @@ public class OfferService {
         offerRepository.save(createOffer(estate.get(), offerRequest));
 
         return new Response(true, HttpStatus.CREATED, "Successfully posted the offer");
+    }
+
+    public Optional<List<Offer>> getFilteredOffers(Integer bathrooms, Integer rooms, Boolean garage, Integer storey,
+                                                   String location, Boolean balcony, Double size, String condition,
+                                                   String type, String availability, Double priceFrom, Double priceTo,
+                                                   LocalDateTime postFrom, LocalDateTime postTo) {
+
+        Optional<List<Estate>> optionalEstates = estateService.getFilteredEstates(bathrooms, rooms, garage, storey, location,
+                                                                          balcony, size, condition, type, availability,
+                                                                          priceFrom, priceTo, postFrom, postTo);
+
+        return optionalEstates.map(estates -> estates.stream().map(offerRepository::findByEstate).toList());
     }
 
     /**

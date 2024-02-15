@@ -23,8 +23,5 @@ public class Agent {
     private Set<Estate> estates;
 
     @OneToMany(mappedBy = "agent")
-    private Set<OwnerMeeting> ownerMeetings;
-
-    @OneToMany(mappedBy = "agent")
-    private Set<CustomerMeeting> customerMeetings;
+    private Set<Meeting> meetings;
 }

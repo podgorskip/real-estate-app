@@ -34,6 +34,12 @@ public class Offer {
     )
     private Set<Customer> customers;
 
+    private boolean blocked;
+
+    @ManyToOne
+    @JoinColumn(name = "blocked_by")
+    private Customer blockedBy;
+
     @PrePersist
     private void prePersist() {
         postDate = LocalDateTime.now();

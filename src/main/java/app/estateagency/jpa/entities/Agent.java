@@ -24,4 +24,7 @@ public class Agent {
 
     @OneToMany(mappedBy = "agent")
     private Set<Meeting> meetings;
+
+    @OneToMany(mappedBy = "agent")
+    private Set<Review> reviews;
 }

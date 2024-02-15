@@ -2,6 +2,7 @@ package app.estateagency.services;
 
 import app.estateagency.dto.request.EstateRequest;
 import app.estateagency.dto.response.Response;
+import app.estateagency.jpa.EstateFilter;
 import app.estateagency.jpa.entities.Agent;
 import app.estateagency.jpa.entities.Estate;
 import app.estateagency.jpa.entities.Owner;
@@ -10,6 +11,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,6 +84,19 @@ public class EstateService {
      */
     public Optional<Estate> getByID(Long id) {
         return estateRepository.findById(id);
+    }
+
+    /**
+     * Retrieves estates based on the predicates passed as arguments
+     * @return List of estates if predicates match any, empty otherwise
+     */
+    public Optional<List<Estate>> getFilteredEstates(Integer bathrooms, Integer rooms, Boolean garage, Integer storey,
+                                                     String location, Boolean balcony, Double size, String condition,
+                                                     String type, String availability, Double priceFrom, Double priceTo,
+                                                     LocalDateTime postFrom, LocalDateTime postTo) {
+
+        return estateRepository.findAll(EstateFilter.filterEstates(type, bathrooms, rooms, garage, storey, location, balcony,
+                                        availability, size, condition, priceFrom, priceTo, postFrom, postTo));
     }
 
     /**

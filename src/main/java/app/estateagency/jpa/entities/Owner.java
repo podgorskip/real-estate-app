@@ -18,7 +18,4 @@ public class Owner {
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private Set<Estate> estates;
-
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private Set<OwnerMeeting> meetings;
 }

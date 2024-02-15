@@ -28,7 +28,7 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
      * @return List of blocked offers if present, empty otherwise
      */
     @Query("SELECT o FROM Offer o " +
-            "WHERE o.blocked IS TRUE " +
+            "WHERE o.blocked = TRUE " +
             "AND o.estate.agent.user.username = :username")
     Optional<List<Offer>> findBlockedOffersByAgentUsername(@Param("username") String username);
 
@@ -38,7 +38,7 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
      * @return List of blocked offers if present, empty otherwise
      */
     @Query("SELECT o FROM Offer o " +
-            "WHERE o.blocked IS TRUE " +
+            "WHERE o.blocked = TRUE " +
             "AND o.blockedBy.user.username = :username")
     Optional<List<Offer>> findBlockedOffersByCustomerUsername(@Param("username") String username);
 }

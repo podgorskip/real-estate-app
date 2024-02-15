@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Objects;
 
+/**
+ *  A controller handling authentication requests
+ */
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -25,6 +28,11 @@ public class AuthenticationController {
     private final DatabaseUserDetailsService databaseUserDetailsService;
     private final JwtUtils jwtUtils;
 
+    /**
+     * Authenticates users
+     * @param authenticationRequest Details needed to authenticate the user
+     * @return Response with JWT token if successfully authenticated 
+     */
     @PostMapping("/auth/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));

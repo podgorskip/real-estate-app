@@ -21,10 +21,6 @@ public class Review {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "agent_id")
-    private Agent agent;
-
     @OneToOne
     @JoinColumn(name = "offer_id")
     private ArchivedOffer archivedOffer;

@@ -59,7 +59,6 @@ public class ReviewService {
         Review review = new Review();
 
         review.setUser(user);
-        review.setAgent(archivedOffer.getEstate().getAgent());
         review.setArchivedOffer(archivedOffer);
         review.setRating(reviewRequest.getRating());
         review.setComment(reviewRequest.getComment());

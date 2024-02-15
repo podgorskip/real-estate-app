@@ -27,11 +27,11 @@ public class Review {
 
     @OneToOne
     @JoinColumn(name = "offer_id")
-    private HistoryOffer historyOffer;
+    private ArchivedOffer archivedOffer;
 
     private int rating;
 
-    private String description;
+    private String comment;
 
     private LocalDateTime postDate;
 

@@ -63,7 +63,7 @@ public class Estate {
     private Set<Document> documents;
 
     @OneToOne(mappedBy = "estate", cascade = CascadeType.ALL)
-    private HistoryOffer historyOffer;
+    private ArchivedOffer archivedOffer;
 
     @PrePersist
     private void prePersist() {

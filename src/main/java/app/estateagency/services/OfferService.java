@@ -2,6 +2,7 @@ package app.estateagency.services;
 
 import app.estateagency.dto.request.OfferRequest;
 import app.estateagency.dto.response.Response;
+import app.estateagency.jpa.entities.Customer;
 import app.estateagency.jpa.entities.Estate;
 import app.estateagency.jpa.entities.Offer;
 import app.estateagency.jpa.repositories.OfferRepository;
@@ -21,6 +22,8 @@ import java.util.Optional;
 public class OfferService {
     private final OfferRepository offerRepository;
     private final EstateService estateService;
+    private final CustomerService customerService;
+    private final ArchivedOfferService archivedOfferService;
 
     /**
      * Allows an agent to post an offer for the estate owners reported.
@@ -50,6 +53,116 @@ public class OfferService {
                                                                           priceFrom, priceTo, postFrom, postTo);
 
         return optionalEstates.map(estates -> estates.stream().map(offerRepository::findByEstate).toList());
+    }
+
+    /**
+     * Allows to block offer for a customer
+     * @param username Username of the customer who requires the block
+     * @param id ID of the offer to be blocked
+     * @return Response if successfully blocked the offer
+     */
+    @Transactional
+    public Response blockOffer(String username, Long id) {
+        Optional<Offer> optionalOffer = offerRepository.findById(id);
+
+        if (optionalOffer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No offer of the provided ID found");
+
+        Optional<Customer> customer = customerService.getByUsername(username);
+
+        if (customer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No customer of the provided username found");
+
+        Offer offer = optionalOffer.get();
+
+        offer.setBlocked(true);
+        offer.setBlockedBy(customer.get());
+
+        return new Response(true, HttpStatus.OK, "Successfully blocked the offer");
+    }
+
+    /**
+     * Allows agents and customers to unblock offers
+     * @param username Username of the agent/customer who unblocks the offer
+     * @param id ID of the offer to be unblocked
+     * @return Response if successfully unblocked the offer
+     */
+    @Transactional
+    public Response unblockOffer(String username, Long id) {
+        Optional<Offer> optionalOffer = offerRepository.findById(id);
+
+        if (optionalOffer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No offer of the provided ID found");
+
+        Offer offer = optionalOffer.get();
+
+        if (!offer.getEstate().getAgent().getUser().getUsername().equals(username)  && !offer.getBlockedBy().getUser().getUsername().equals(username)) {
+            return new Response(false, HttpStatus.BAD_REQUEST, "You are not authorized to unblock this offer");
+        }
+
+        offer.setBlocked(false);
+        offer.setBlockedBy(null);
+
+        offerRepository.save(offer);
+
+        return new Response(true, HttpStatus.OK, "Successfully unblocked the offer");
+    }
+
+    /**
+     * Retrieves blocked offers for a specified agent
+     * @param username Username of the agent
+     * @return List of blocked offers if present, empty otherwise
+     */
+    public Optional<List<Offer>> getBlockedOffersByAgentUsername(String username) {
+        return offerRepository.findBlockedOffersByAgentUsername(username);
+    }
+
+    /**
+     * Allows agents to finalize blocked offers
+     * @param username Username of the agent finalizing the offer
+     * @param id ID of the finalized offer
+     * @return Response if successfully finalized the offer
+     */
+    @Transactional
+    public Response finalizeOffer(String username, Long id) {
+        Optional<Offer> offer = offerRepository.findById(id);
+        Response response = validateFinalizeRequest(offer, username);
+
+        if (!response.isSuccess())
+            return response;
+
+        archivedOfferService.archiveOffer(offer.get());
+        offerRepository.delete(offer.get());
+
+        return new Response(true, HttpStatus.OK, "Successfully finalized the offer");
+    }
+
+    /**
+     * Retrieves blocked offers by the specified customer
+     * @param username Username of the customer whose blocked offers are retrieved
+     * @return List of offers if present, empty otherwise
+     */
+    public Optional<List<Offer>> getBlockedOffersByCustomerUsername(String username) {
+        return offerRepository.findBlockedOffersByCustomerUsername(username);
+    }
+
+    /**
+     * Allows to check if finalize request is valid
+     * @param offer Offer which is to be finalized
+     * @param username Username of the agent finalizing the offer
+     * @return Response if request is valid
+     */
+    private Response validateFinalizeRequest(Optional<Offer> offer, String username) {
+        if (offer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No offer of the provided ID found");
+
+        if (!offer.get().isBlocked())
+            return new Response(false, HttpStatus.BAD_REQUEST, "The offer was not blocked by any customer");
+
+        if (!offer.get().getEstate().getAgent().getUser().getUsername().equals(username))
+            return new Response(false, HttpStatus.BAD_REQUEST, "The offer is not assigned to the agent of the provided username");
+
+        return new Response(true, HttpStatus.OK, "Finalize request is valid");
     }
 
     /**

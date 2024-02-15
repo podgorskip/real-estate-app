@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +30,7 @@ public interface ArchivedOfferRepository extends JpaRepository<ArchivedOffer, Lo
      * @return List of archived offers to review if present, empty otherwise
      */
     @Query("SELECT a FROM ArchivedOffer a " +
-            "LEFT JOIN Review r ON r = a.review " +
+            "LEFT JOIN Review r ON r.user = a.estate.owner.user " +
             "WHERE a.estate.owner.user.username = :username " +
             "AND r IS NULL")
     Optional<List<ArchivedOffer>> findOwnersUnreviewedArchivedOffers(@Param("username") String username);

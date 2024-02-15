@@ -15,12 +15,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ *  A controller handling requests regarding Admin entity
+ */
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
 
+    /**
+     * Allows to add a new admin account
+     * @param userDetails Details of the user who requests creating the new account
+     * @param userRequest Details of the newly created user
+     * @return Response if successfully add the account
+     */
     @RequiredPrivilege(Privilege.ADD_ADMIN)
     @PostMapping("/admin/add-admin")
     public ResponseEntity<Response> createAdminAccount(@AuthenticationPrincipal UserDetails userDetails, @Valid @RequestBody UserRequest userRequest) {

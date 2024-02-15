@@ -31,7 +31,7 @@ public class AuthenticationController {
     /**
      * Authenticates users
      * @param authenticationRequest Details needed to authenticate the user
-     * @return Response with JWT token if successfully authenticated 
+     * @return Response with JWT token if successfully authenticated
      */
     @PostMapping("/auth/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest authenticationRequest) {

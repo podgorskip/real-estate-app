@@ -5,9 +5,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "offer_history", schema = "real_estate")
+@Table(name = "archived_offer", schema = "real_estate")
 @Data
-public class HistoryOffer {
+public class ArchivedOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,6 +15,10 @@ public class HistoryOffer {
     @OneToOne
     @JoinColumn(name = "estate_id")
     private Estate estate;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     private double price;
 

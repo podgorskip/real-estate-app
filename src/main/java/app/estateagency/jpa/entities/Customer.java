@@ -17,9 +17,6 @@ public class Customer {
     private User user;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private Set<CustomerMeeting> meetings;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<OfferVisit> offerVisits;
 
     @ManyToMany(mappedBy = "customers")

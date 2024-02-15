@@ -27,4 +27,7 @@ public class Customer {
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private CreditWorthinessInfo creditWorthinessInfo;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<ArchivedOffer> archivedOffers;
 }

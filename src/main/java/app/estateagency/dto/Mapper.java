@@ -47,9 +47,9 @@ public interface Mapper {
 
     @Mapping(source = "archivedOffer.estate.agent.id", target = "agentID")
     @Mapping(source = "archivedOffer.estate.agent.user.fullName", target = "agent")
-    @Mapping(source = "archivedOffer.estate.owner.user.if", target = "ownerID")
+    @Mapping(source = "archivedOffer.estate.owner.user.id", target = "ownerID")
     @Mapping(source = "archivedOffer.estate.owner.user.fullName", target = "owner")
-    @Mapping(source = "archivedOffer.customer.user.fullName", target = "customerID")
+    @Mapping(source = "archivedOffer.customer.user.id", target = "customerID")
     @Mapping(source = "archivedOffer.customer.user.fullName", target = "customer")
     @Mapping(source = "archivedOffer.estate.type", target = "type")
     @Mapping(source = "archivedOffer.estate.bathrooms", target = "bathrooms")

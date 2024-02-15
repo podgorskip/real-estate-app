@@ -23,7 +23,7 @@ public class HistoryOffer {
     private LocalDateTime archiveDate;
 
     @OneToOne(mappedBy = "historyOffer", cascade = CascadeType.ALL)
-    private CustomerReview customerReview;
+    private Review review;
 
     @PrePersist
     private void prePersist() {

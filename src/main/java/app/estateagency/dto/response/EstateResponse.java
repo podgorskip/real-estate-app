@@ -4,7 +4,6 @@ import app.estateagency.enums.estate.EstateType;
 import app.estateagency.enums.estate.Availability;
 import app.estateagency.enums.estate.Condition;
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Data

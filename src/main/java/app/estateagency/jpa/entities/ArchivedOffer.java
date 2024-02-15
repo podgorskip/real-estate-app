@@ -26,7 +26,7 @@ public class ArchivedOffer {
 
     private LocalDateTime archiveDate;
 
-    @OneToOne(mappedBy = "historyOffer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "archivedOffer", cascade = CascadeType.ALL)
     private Review review;
 
     @PrePersist

@@ -1,13 +1,14 @@
 package app.estateagency.services;
 
 import app.estateagency.dto.response.Response;
+import app.estateagency.enums.Role;
 import app.estateagency.jpa.entities.*;
-import app.estateagency.jpa.repositories.CustomerMeetingRepository;
-import app.estateagency.jpa.repositories.OwnerMeetingRepository;
+import app.estateagency.jpa.repositories.MeetingRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,69 +17,64 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MeetingService {
-    private final CustomerMeetingRepository customerMeetingRepository;
-    private final OwnerMeetingRepository ownerMeetingRepository;
     private final CalendarService calendarService;
-    private final CustomerService customerService;
-    private final OwnerService ownerService;
+    private final MeetingRepository meetingRepository;
+    private final UserService userService;
 
     /**
-     * Allows customers to schedule meetings with agents
-     * @param username Username of the customer who schedules the meeting
+     * Allows owners and customers to schedule meetings with agents
+     * @param username Username of the owner/customer who schedules the meeting
      * @param id ID of the available calendar
      * @return Response if successfully scheduled meeting
      */
     @Transactional
-    public Response customerScheduleMeeting(String username, Long id) {
+    public Response scheduleMeeting(String username, Long id) {
+        Optional<User> user = userService.getByUsername(username);
+
+        if (user.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No account of the provided username found");
+
         Optional<Calendar> calendar = calendarService.getByID(id);
 
         if (calendar.isEmpty())
-            return new Response(false, HttpStatus.NOT_FOUND, "No calendar of the provided ID found");
+            return new Response(false, HttpStatus.NOT_FOUND, "No available meeting found");
 
-        Optional<Customer> customer = customerService.getByUsername(username);
+        Meeting meeting = new Meeting();
+        meeting.setUser(user.get());
+        meeting.setAgent(calendar.get().getAgent());
+        meeting.setDate(calendar.get().getDate());
+        meeting.setRole(user.get().getRole());
 
-        if (customer.isEmpty())
-            return new Response(false, HttpStatus.NOT_FOUND, "No customer of the provided username found");
+        meetingRepository.save(meeting);
 
-        CustomerMeeting customerMeeting = new CustomerMeeting();
-
-        customerMeeting.setCustomer(customer.get());
-        customerMeeting.setAgent(calendar.get().getAgent());
-        customerMeeting.setDate(calendar.get().getDate());
-
-        customerMeetingRepository.save(customerMeeting);
-        calendarService.deleteCalendar(calendar.get());
-
-        return new Response(true, HttpStatus.CREATED, "Successfully scheduled meeting");
+        return new Response(true, HttpStatus.CREATED, "Successfully scheduled the meeting");
     }
 
     /**
-     * Allows owners to schedule meetings with agents
-     * @param username Username of the owner who schedules the meeting
-     * @param id ID of the available calendar
-     * @return Response if successfully scheduled meeting
+     * Retrieves all the agent's scheduled meetings with customers and owners
+     * @param username Username of the agent to have meetings retrieved
+     * @return List of meetings if present, empty otherwise
      */
-    @Transactional
-    public Response ownerScheduleMeeting(String username, Long id) {
-        Optional<Calendar> calendar = calendarService.getByID(id);
+    public Optional<List<Meeting>> getAgentScheduledMeetings(String username) {
+        return meetingRepository.findByAgentUsername(username);
+    }
 
-        if (calendar.isEmpty())
-            return new Response(false, HttpStatus.NOT_FOUND, "No calendar of the provided ID found");
+    /**
+     * Retrieves all the agent's scheduled meetings with users who have the specified role
+     * @param username Username of the agent
+     * @param role Role of the users who are to be retrieved
+     * @return List of meetings if present, empty otherwise
+     */
+    public Optional<List<Meeting>> getAgentScheduledMeetingByRole(String username, Role role) {
+        return meetingRepository.findByAgentUsernameAndRole(username, role);
+    }
 
-        Optional<Owner> owner = ownerService.getByUsername(username);
-
-        if (owner.isEmpty())
-            return new Response(false, HttpStatus.NOT_FOUND, "No owner of the provided username found");
-
-        OwnerMeeting ownerMeeting = new OwnerMeeting();
-
-        ownerMeeting.setOwner(owner.get());
-        ownerMeeting.setAgent(calendar.get().getAgent());
-        ownerMeeting.setDate(calendar.get().getDate());
-
-        ownerMeetingRepository.save(ownerMeeting);
-        calendarService.deleteCalendar(calendar.get());
-
-        return new Response(true, HttpStatus.CREATED, "Successfully scheduled meeting");
+    /**
+     * Retrieves all the user's scheduled meetings
+     * @param username Username of the user
+     * @return List of meetings if present, empty otherwise
+     */
+    public Optional<List<Meeting>> getMeetings(String username) {
+        return meetingRepository.findByUsername(username);
     }
 }

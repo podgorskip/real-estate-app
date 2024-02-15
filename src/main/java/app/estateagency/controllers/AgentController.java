@@ -15,16 +15,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *  A controller handling requests regarding Agent entity
+ */
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class AgentController {
     private final AgentService agentService;
 
+    /**
+     * Allows admins to add a new agent account
+     * @param userDetails Details of the user who sends the request, used to validate required privilege
+     * @param userRequest Details of the newly created agent account
+     * @return Response if successfully added the new account
+     */
     @RequiredPrivilege(Privilege.ADD_AGENT)
     @PostMapping("/admin/add-agent")
     public ResponseEntity<Response> createAgentAccount(@AuthenticationPrincipal UserDetails userDetails, @Valid @RequestBody UserRequest userRequest) {
@@ -32,8 +40,12 @@ public class AgentController {
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
+    /**
+     * Allows all the users to check available agents
+     * @return Response with list of agents if present
+     */
     @GetMapping("/auth/agents")
-    public ResponseEntity<List<AgentResponse>> getAllAgents(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<List<AgentResponse>> getAllAgents() {
         Optional<List<Agent>> agents = agentService.getAllAgents();
 
         return agents

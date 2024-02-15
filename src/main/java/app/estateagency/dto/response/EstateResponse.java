@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class EstateResponse {
+    private Long id;
     private Long agentID;
     private String agent;
     private Long ownerID;

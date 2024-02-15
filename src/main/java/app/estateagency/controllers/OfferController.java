@@ -9,6 +9,7 @@ import app.estateagency.jpa.entities.Offer;
 import app.estateagency.security.RequiredPrivilege;
 import app.estateagency.services.OfferService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -77,5 +77,82 @@ public class OfferController {
                 .orElseGet(() -> ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .build());
+    }
+
+    /**
+     * Allows customers to block offers
+     * @param userDetails User details of the customer who blocks the offer
+     * @param id ID of the offer to be blocked
+     * @return Response if successfully blocked the offer
+     */
+    @RequiredPrivilege(Privilege.BLOCK_OFFER)
+    @PatchMapping("/customer/block-offer")
+    public ResponseEntity<Response> blockOffer(@AuthenticationPrincipal UserDetails userDetails, @NotNull @RequestParam("id") Long id) {
+        Response response = offerService.blockOffer(userDetails.getUsername(), id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+    /**
+     * Allows agents and customers to unblock offers
+     * @param userDetails User details of the agent/customer who unblocks the offer
+     * @param id ID of the offer to be unblocked
+     * @return Response if successfully unblocked the offer
+     */
+    @RequiredPrivilege(Privilege.UNBLOCK_OFFER)
+    @PatchMapping("/unblock-offer")
+    public ResponseEntity<Response> unblockOffer(@AuthenticationPrincipal UserDetails userDetails, @NotNull @RequestParam("id") Long id) {
+        Response response = offerService.unblockOffer(userDetails.getUsername(), id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+    /**
+     * Retrieves offers waiting to be finalized
+     * @param userDetails User details of the agent requesting offers
+     * @return List of offers if present, empty otherwise
+     */
+    @RequiredPrivilege(Privilege.CHECK_BLOCKED_OFFERS)
+    @GetMapping("/agent/to-finalize")
+    public ResponseEntity<List<OfferResponse>> checkOffersToFinalize(@AuthenticationPrincipal UserDetails userDetails) {
+        Optional<List<Offer>> optionalOffers = offerService.getBlockedOffersByAgentUsername(userDetails.getUsername());
+
+        return optionalOffers
+                .map(offers -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(offers.stream().map(Mapper.INSTANCE::convertOffer).toList()))
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .build());
+    }
+
+    /**
+     * Retrieves offers blocked by the customer
+     * @param userDetails User details of the customer making the request
+     * @return List of blocked offers if present, empty otherwise
+     */
+    @RequiredPrivilege(Privilege.CHECK_BLOCKED_OFFERS)
+    @GetMapping("/customer/blocked-offers")
+    public ResponseEntity<List<OfferResponse>> checkMyBlockedOffers(@AuthenticationPrincipal UserDetails userDetails) {
+        Optional<List<Offer>> optionalOffers = offerService.getBlockedOffersByCustomerUsername(userDetails.getUsername());
+
+        return optionalOffers
+                .map(offers -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(offers.stream().map(Mapper.INSTANCE::convertOffer).toList()))
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .build());
+    }
+
+    /**
+     * Allows agents to finalize offers moving them to archived offers
+     * @param userDetails User details of the agent finalizing the offer
+     * @param id ID of the offer to be finalized
+     * @return Response if successfully finalized the offer
+     */
+    @RequiredPrivilege(Privilege.FINALIZE_OFFER)
+    @PostMapping("/agent/finalize-offer")
+    public ResponseEntity<Response> finalizeOffer(@AuthenticationPrincipal UserDetails userDetails, @NotNull @RequestParam("id") Long id) {
+        Response response = offerService.finalizeOffer(userDetails.getUsername(), id);
+        return ResponseEntity.status(response.getStatus()).body(response);
     }
 }

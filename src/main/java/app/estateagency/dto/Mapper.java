@@ -1,13 +1,7 @@
 package app.estateagency.dto;
 
-import app.estateagency.dto.response.AgentResponse;
-import app.estateagency.dto.response.CalendarResponse;
-import app.estateagency.dto.response.DocumentResponse;
-import app.estateagency.dto.response.EstateResponse;
-import app.estateagency.jpa.entities.Agent;
-import app.estateagency.jpa.entities.Calendar;
-import app.estateagency.jpa.entities.Document;
-import app.estateagency.jpa.entities.Estate;
+import app.estateagency.dto.response.*;
+import app.estateagency.jpa.entities.*;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
@@ -31,4 +25,8 @@ public interface Mapper {
 
     @Mapping(source = "calendar.agent.id", target = "agentID")
     CalendarResponse convertCalendar(Calendar calendar);
+
+    @Mapping(source = "meeting.user.fullName", target = "user")
+    @Mapping(source = "meeting.agent.user.fullName", target = "agent")
+    MeetingResponse convertMeetings(Meeting meeting);
 }

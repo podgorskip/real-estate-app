@@ -17,6 +17,7 @@ public class Preference {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "preference_customer",
+            schema = "real_estate",
             joinColumns = @JoinColumn(name = "preference_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id")
     )

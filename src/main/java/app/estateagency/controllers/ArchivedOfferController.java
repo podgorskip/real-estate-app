@@ -29,7 +29,7 @@ public class ArchivedOfferController {
     /**
      * Retrieves archived offers by customer's username
      * @param userDetails User details of the customer making the request
-     * @return List of archived offers if present, empty otherwise
+     * @return List of archived offers if present, empty otherwise§1
      */
     @RequiredPrivilege(Privilege.CHECK_ARCHIVED_OFFERS)
     @GetMapping("/customer/archived-offers")

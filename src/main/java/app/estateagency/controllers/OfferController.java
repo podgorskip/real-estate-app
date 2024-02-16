@@ -155,4 +155,50 @@ public class OfferController {
         Response response = offerService.finalizeOffer(userDetails.getUsername(), id);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
+
+    /**
+     * Allows customers to add offers to favorites
+     * @param userDetails User details of the customer making the request
+     * @param id ID of the offer being added to favorites
+     * @return Response if successfully liked the offer
+     */
+    @RequiredPrivilege(Privilege.ADD_TO_FAVORITES)
+    @PostMapping("/customer/add-to-favorites")
+    public ResponseEntity<Response> addToFavorites(@AuthenticationPrincipal UserDetails userDetails, @NotNull @RequestParam("id") Long id) {
+        Response response = offerService.addOfferToFavorites(userDetails.getUsername(), id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+    /**
+     * Allows customers to check offers they added to favorites
+     * @param userDetails User details of the customer making the request
+     * @return List of offers if present, empty otherwise
+     */
+    @RequiredPrivilege(Privilege.CHECK_FAVORITES)
+    @GetMapping("/customer/favorites")
+    public ResponseEntity<List<OfferResponse>> checkFavorites(@AuthenticationPrincipal UserDetails userDetails) {
+        Optional<List<Offer>> optionalOffers = offerService.getFavoriteOffers(userDetails.getUsername());
+
+        return optionalOffers
+                .map(offers -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(offers.stream().map(Mapper.INSTANCE::convertOffer).toList()))
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .build());
+    }
+
+    /**
+     * Allows customers to remove offers from favorites
+     * @param userDetails User details of the customer making the request
+     * @param id ID of the offer to be removed from favorites
+     * @return Response if successfully removed the offer from favorites
+     */
+    @RequiredPrivilege(Privilege.REMOVE_FROM_FAVORITES)
+    @PostMapping("/customer/remove-from-favorites")
+    public ResponseEntity<Response> removeFromFavorites(@AuthenticationPrincipal UserDetails userDetails, @NotNull @RequestParam("id") Long id) {
+        Response response = offerService.removeOfferFromFavorites(userDetails.getUsername(), id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
 }

@@ -78,7 +78,7 @@ public class Estate {
 
         Estate otherEstate = (Estate) o;
 
-        return otherEstate.getId().equals(id) && otherEstate.getOwner().getUser().getUsername().equals(owner.getUser().getUsername());
+        return otherEstate.getId().equals(id) && otherEstate.getOwner().getUser().equals(owner.getUser());
     }
 
     @PrePersist

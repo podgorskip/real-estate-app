@@ -147,6 +147,63 @@ public class OfferService {
     }
 
     /**
+     * Allows customers to add an offer to favorites
+     * @param username Username of the customer who likes the offer
+     * @param id ID of the offer tp be liked
+     * @return Response if successfully added the offer to favorites
+     */
+    public Response addOfferToFavorites(String username, Long id) {
+        Optional<Customer> customer = customerService.getByUsername(username);
+
+        if (customer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No customer of the provided username found");
+
+        Optional<Offer> offer = offerRepository.findById(id);
+
+        if (offer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No offer of the provided ID found");
+
+        offer.get().getCustomers().add(customer.get());
+        offerRepository.save(offer.get());
+
+        return new Response(true,  HttpStatus.CREATED, "Successfully added the offer to favorites");
+    }
+
+    /**
+     * Retrieves offers added to favorites
+     * @param username Username of the customer whose liked offers are retrieved
+     * @return List of offers if present, empty otherwise
+     */
+    public Optional<List<Offer>> getFavoriteOffers(String username) {
+        Optional<Customer> optionalCustomer = customerService.getByUsername(username);
+
+        return optionalCustomer.map(customer -> customer.getLikes().stream().toList());
+    }
+
+    /**
+     * Allows customers to remove offers from favorites
+     * @param username Username of the customer who wants to unlike an offer
+     * @param id ID of the offer to be unliked
+     * @return Response if successfully unliked the offer
+     */
+    public Response removeOfferFromFavorites(String username, Long id) {
+        Optional<Customer> customer = customerService.getByUsername(username);
+
+        if (customer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No customer of the provided username found");
+
+        Optional<Offer> offer = offerRepository.findById(id);
+
+        if (offer.isEmpty())
+            return new Response(false, HttpStatus.NOT_FOUND, "No offer of the provided username found");
+
+        offer.get().getCustomers().remove(customer.get());
+        offerRepository.save(offer.get());
+
+        return new Response(true, HttpStatus.OK, "Successfully removed the offer from favorites");
+    }
+
+    /**
      * Allows to check if finalize request is valid
      * @param offer Offer which is to be finalized
      * @param username Username of the agent finalizing the offer

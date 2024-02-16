@@ -6,6 +6,7 @@ import app.estateagency.enums.estate.EstateType;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -64,6 +65,21 @@ public class Estate {
 
     @OneToOne(mappedBy = "estate", cascade = CascadeType.ALL)
     private ArchivedOffer archivedOffer;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, owner.getUser().getUsername());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Estate otherEstate = (Estate) o;
+
+        return otherEstate.getId().equals(id) && otherEstate.getOwner().getUser().getUsername().equals(owner.getUser().getUsername());
+    }
 
     @PrePersist
     private void prePersist() {

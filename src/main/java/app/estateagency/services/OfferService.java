@@ -24,6 +24,7 @@ public class OfferService {
     private final EstateService estateService;
     private final CustomerService customerService;
     private final ArchivedOfferService archivedOfferService;
+    private final OfferVisitService offerVisitService;
 
     /**
      * Allows an agent to post an offer for the estate owners reported.
@@ -203,6 +204,24 @@ public class OfferService {
         offerRepository.save(offer.get());
 
         return new Response(true, HttpStatus.OK, "Successfully removed the offer from favorites");
+    }
+
+    /**
+     * Retrieves the specified visit marking it as visited by the customer
+     * @param username Username of the customer who checks the offer
+     * @param id ID of the offer which is checked
+     * @return Offer if present, empty otherwise
+     */
+    public Optional<Offer> checkOffer(String username, Long id) {
+        Optional<Offer> offer = offerRepository.findById(id);
+        Optional<Customer> customer = customerService.getByUsername(username);
+
+        if (offer.isEmpty() || customer.isEmpty())
+            return Optional.empty();
+
+        offerVisitService.addOfferVisit(customer.get(), offer.get());
+
+        return offer;
     }
 
     /**

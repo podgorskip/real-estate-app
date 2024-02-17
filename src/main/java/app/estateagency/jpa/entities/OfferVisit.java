@@ -21,4 +21,9 @@ public class OfferVisit {
     private Offer offer;
 
     private LocalDateTime date;
+
+    @PrePersist()
+    private void prePersist() {
+        date = LocalDateTime.now();
+    }
 }

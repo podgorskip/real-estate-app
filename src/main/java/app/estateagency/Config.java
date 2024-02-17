@@ -15,12 +15,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableJpaRepositories
 @EnableAspectJAutoProxy
 @EnableWebSecurity
 @ComponentScan
+@EnableTransactionManagement
 @RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class Config {

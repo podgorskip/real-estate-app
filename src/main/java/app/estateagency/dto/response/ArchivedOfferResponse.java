@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class ArchivedOfferResponse {
+    private Long id;
     private Long agentID;
     private String agent;
     private Long ownerID;

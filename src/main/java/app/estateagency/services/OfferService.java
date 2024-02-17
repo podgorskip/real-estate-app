@@ -6,10 +6,10 @@ import app.estateagency.jpa.entities.Customer;
 import app.estateagency.jpa.entities.Estate;
 import app.estateagency.jpa.entities.Offer;
 import app.estateagency.jpa.repositories.OfferRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -125,14 +125,16 @@ public class OfferService {
      */
     @Transactional
     public Response finalizeOffer(String username, Long id) {
-        Optional<Offer> offer = offerRepository.findById(id);
-        Response response = validateFinalizeRequest(offer, username);
+        Optional<Offer> optionalOffer = offerRepository.findById(id);
+        Response response = validateFinalizeRequest(optionalOffer, username);
 
         if (!response.isSuccess())
             return response;
 
-        archivedOfferService.archiveOffer(offer.get());
-        offerRepository.delete(offer.get());
+        Offer offer = optionalOffer.get();
+
+        archivedOfferService.archiveOffer(offer);
+        offerRepository.delete(offer);
 
         return new Response(true, HttpStatus.OK, "Successfully finalized the offer");
     }

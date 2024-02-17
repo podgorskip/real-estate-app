@@ -3,9 +3,9 @@ package app.estateagency.services;
 import app.estateagency.jpa.entities.ArchivedOffer;
 import app.estateagency.jpa.entities.Offer;
 import app.estateagency.jpa.repositories.ArchivedOfferRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 

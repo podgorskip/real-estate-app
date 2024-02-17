@@ -31,7 +31,8 @@ public interface EstateRepository extends JpaRepository<Estate, Long> {
             "JOIN Document d ON d.estate = e " +
             "JOIN Photo p ON p.estate = e " +
             "LEFT JOIN Offer o ON o.estate = e " +
-            "WHERE o IS NULL")
+            "LEFT JOIN ArchivedOffer ao ON ao.estate = e " +
+            "WHERE o IS NULL AND ao IS NULL")
     Optional<List<Estate>> findReportedEstatesByAgent(@Param("agent") Agent agent);
 
     /**

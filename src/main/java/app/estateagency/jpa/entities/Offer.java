@@ -3,6 +3,7 @@ package app.estateagency.jpa.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -23,7 +24,7 @@ public class Offer {
 
     private LocalDateTime postDate;
 
-    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "offer")
     private Set<OfferVisit> offerVisits;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -40,6 +41,30 @@ public class Offer {
     @ManyToOne
     @JoinColumn(name = "blocked_by")
     private Customer blockedBy;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Offer offer = (Offer) o;
+        return Objects.equals(id, offer.id) && Objects.equals(estate, offer.estate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, estate);
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "id=" + id +
+                ", estate=" + estate +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", postDate=" + postDate +
+                '}';
+    }
 
     @PrePersist
     private void prePersist() {

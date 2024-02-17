@@ -54,16 +54,16 @@ public class Estate {
 
     private LocalDateTime postDate;
 
-    @OneToOne(mappedBy = "estate", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "estate")
     private Offer offer;
 
-    @OneToMany(mappedBy = "estate", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "estate")
     private Set<Photo> photos;
 
-    @OneToMany(mappedBy = "estate", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "estate")
     private Set<Document> documents;
 
-    @OneToOne(mappedBy = "estate", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "estate")
     private ArchivedOffer archivedOffer;
 
     @Override
@@ -79,6 +79,28 @@ public class Estate {
         Estate otherEstate = (Estate) o;
 
         return otherEstate.getId().equals(id) && otherEstate.getOwner().getUser().equals(owner.getUser());
+    }
+
+    @Override
+    public String toString() {
+        return "Estate{" +
+                "id=" + id +
+                ", owner=" + owner +
+                ", agent=" + agent +
+                ", type=" + type +
+                ", bathrooms=" + bathrooms +
+                ", rooms=" + rooms +
+                ", garage=" + garage +
+                ", storey=" + storey +
+                ", location='" + location + '\'' +
+                ", balcony=" + balcony +
+                ", description='" + description + '\'' +
+                ", availability=" + availability +
+                ", size=" + size +
+                ", condition=" + condition +
+                ", offeredPrice=" + offeredPrice +
+                ", postDate=" + postDate +
+                '}';
     }
 
     @PrePersist

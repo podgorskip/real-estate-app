@@ -2,6 +2,8 @@ package app.estateagency.jpa.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -30,4 +32,25 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private Set<ArchivedOffer> archivedOffers;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id) && Objects.equals(user, customer.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", user=" + user +
+                '}';
+    }
 }

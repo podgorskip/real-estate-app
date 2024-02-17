@@ -35,4 +35,12 @@ public class Owner {
 
         return id.equals(otherOwner.getId()) && user.equals(otherOwner.getUser());
     }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", user=" + user +
+                '}';
+    }
 }

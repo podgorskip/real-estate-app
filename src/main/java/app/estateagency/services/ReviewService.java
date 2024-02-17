@@ -49,6 +49,15 @@ public class ReviewService {
     }
 
     /**
+     * Retrieves reviews of the agent with the specified ID
+     * @param id ID of the agent
+     * @return List of reviews if present, empty otherwise
+     */
+    public Optional<List<Review>> checkReviewsByAgentID(Long id) {
+        return reviewRepository.findByAgentID(id);
+    }
+
+    /**
      * Allows to create a fully populated Review instance
      * @param user User who reviews the transaction
      * @param archivedOffer Archived offer which is reviewed

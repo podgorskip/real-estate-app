@@ -2,6 +2,7 @@ package app.estateagency.controllers;
 
 import app.estateagency.dto.Mapper;
 import app.estateagency.dto.request.OfferRequest;
+import app.estateagency.dto.response.OfferPreviewResponse;
 import app.estateagency.dto.response.OfferResponse;
 import app.estateagency.dto.response.Response;
 import app.estateagency.enums.Privilege;
@@ -50,7 +51,7 @@ public class OfferController {
      */
     @RequiredPrivilege(Privilege.CHECK_OFFERS)
     @GetMapping("/auth/offers")
-    public ResponseEntity<List<OfferResponse>> filterEstates(
+    public ResponseEntity<List<OfferPreviewResponse>> filterEstates(
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "bathrooms", required = false) Integer bathrooms,
             @RequestParam(value = "rooms", required = false) Integer rooms,
@@ -73,7 +74,7 @@ public class OfferController {
         return optionalOffers
                 .map(estates -> ResponseEntity
                         .status(HttpStatus.OK)
-                        .body(estates.stream().map(Mapper.INSTANCE::convertOffer).toList()))
+                        .body(estates.stream().map(Mapper.INSTANCE::convertOfferPreview).toList()))
                 .orElseGet(() -> ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .build());
@@ -199,6 +200,20 @@ public class OfferController {
     public ResponseEntity<Response> removeFromFavorites(@AuthenticationPrincipal UserDetails userDetails, @NotNull @RequestParam("id") Long id) {
         Response response = offerService.removeOfferFromFavorites(userDetails.getUsername(), id);
         return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+    @RequiredPrivilege(Privilege.CHECK_OFFER_DETAILS)
+    @GetMapping("/customer/offer")
+    public ResponseEntity<OfferResponse> checkOffer(@AuthenticationPrincipal UserDetails userDetails, @NotNull @RequestParam("id") Long id) {
+        Optional<Offer> optionalOffer = offerService.checkOffer(userDetails.getUsername(), id);
+
+        return optionalOffer
+                .map(offer -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(Mapper.INSTANCE.convertOffer(offer)))
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .build());
     }
 
 }

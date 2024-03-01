@@ -8,7 +8,6 @@ import app.estateagency.enums.credit.Gender;
 import app.estateagency.enums.credit.MaritalStatus;
 import app.estateagency.jpa.entities.CreditworthinessInfo;
 import app.estateagency.jpa.entities.Customer;
-import app.estateagency.jpa.entities.Offer;
 import app.estateagency.jpa.repositories.CreditworthinessInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -45,6 +44,11 @@ public class CreditworthinessInfoService {
         return new Response(true, HttpStatus.CREATED, "Successfully filled in the credit worthiness info");
     }
 
+    /**
+     * Allows customers to check their creditworthiness
+     * @param username Username of the customer to have the creditworthiness checked
+     * @return Response with the info of the credibility
+     */
     public Response checkCreditWorthiness(String username) {
         Optional<Customer> customer = customerService.getByUsername(username);
 
@@ -62,6 +66,12 @@ public class CreditworthinessInfoService {
         return new Response(true, HttpStatus.OK, creditworthiness.toString());
     }
 
+    /**
+     * Allows customers to check if their creditworthiness allows to buy the estate
+     * @param username Username of the user to have the info checked
+     * @param id ID of the estate to which creditworthiness is compared to
+     * @return Response with the info of the credibility
+     */
     public Response checkCreditWorthinessForOffer(String username, Long id) {
         Optional<Boolean> creditworthiness =  offerService.checkCreditWorthinessForEstatePrice(username, id);
 

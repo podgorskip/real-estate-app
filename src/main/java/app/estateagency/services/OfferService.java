@@ -45,6 +45,10 @@ public class OfferService {
         return new Response(true, HttpStatus.CREATED, "Successfully posted the offer");
     }
 
+    /**
+     * Retrieves offers based on the specified criteria
+     * @return List of offers if present, empty otherwise
+     */
     public Optional<List<Offer>> getFilteredOffers(Integer bathrooms, Integer rooms, Boolean garage, Integer storey,
                                                    String location, Boolean balcony, Double size, String condition,
                                                    String type, String availability, Double priceFrom, Double priceTo,

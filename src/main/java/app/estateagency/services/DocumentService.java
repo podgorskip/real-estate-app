@@ -4,7 +4,7 @@ import app.estateagency.dto.response.Response;
 import app.estateagency.jpa.entities.Document;
 import app.estateagency.jpa.entities.Estate;
 import app.estateagency.jpa.repositories.DocumentRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

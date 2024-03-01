@@ -6,7 +6,7 @@ import app.estateagency.jpa.entities.ArchivedOffer;
 import app.estateagency.jpa.entities.Review;
 import app.estateagency.jpa.entities.User;
 import app.estateagency.jpa.repositories.ReviewRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

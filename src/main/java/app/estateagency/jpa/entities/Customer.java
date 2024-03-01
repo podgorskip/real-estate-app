@@ -1,6 +1,6 @@
 package app.estateagency.jpa.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.util.Objects;
@@ -28,7 +28,7 @@ public class Customer {
     private Set<Preference> preferences;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    private CreditWorthinessInfo creditWorthinessInfo;
+    private CreditworthinessInfo creditWorthinessInfo;
 
     @OneToMany(mappedBy = "customer")
     private Set<ArchivedOffer> archivedOffers;

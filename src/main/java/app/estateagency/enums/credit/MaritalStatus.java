@@ -1,5 +1,7 @@
 package app.estateagency.enums.credit;
 
-public enum MaritalStatus {
+import java.io.Serializable;
+
+public enum MaritalStatus implements Serializable {
     SINGLE, MARRIED, DIVORCED, SEPARATED, WIDOWED
 }

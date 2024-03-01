@@ -5,7 +5,7 @@ import app.estateagency.dto.response.Response;
 import app.estateagency.enums.Role;
 import app.estateagency.jpa.entities.Admin;
 import app.estateagency.jpa.repositories.AdminRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

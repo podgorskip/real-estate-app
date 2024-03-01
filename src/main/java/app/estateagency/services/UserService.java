@@ -7,7 +7,7 @@ import app.estateagency.dto.response.Response;
 import app.estateagency.enums.Role;
 import app.estateagency.jpa.entities.User;
 import app.estateagency.jpa.repositories.UserRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;

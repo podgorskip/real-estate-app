@@ -1,6 +1,6 @@
 package app.estateagency.jpa.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 

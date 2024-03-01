@@ -3,7 +3,7 @@ package app.estateagency.controllers;
 import app.estateagency.dto.request.UserRequest;
 import app.estateagency.dto.response.Response;
 import app.estateagency.services.CustomerService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

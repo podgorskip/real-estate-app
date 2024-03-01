@@ -14,9 +14,9 @@ function Document() {
     
         const formData = new FormData();
         formData.append('file', file)
-        formData.append('id', 2);
+        formData.append('id', 3);
     
-        const url = `/api/owner/add-document`;
+        const url = `/api/owner/upload-photo`;
     
         const response = await fetch(url, {
             method: "POST",
@@ -28,6 +28,7 @@ function Document() {
     
         if (!response.ok) {
             console.log("Failed to upload file");
+            return;
         }
 
         console.log("Successfully posted file")

@@ -1,7 +1,7 @@
 package app.estateagency.dto.request;
 
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.Set;

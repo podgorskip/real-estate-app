@@ -3,7 +3,7 @@ package app.estateagency.jpa.entities;
 import app.estateagency.enums.estate.Availability;
 import app.estateagency.enums.estate.Condition;
 import app.estateagency.enums.estate.EstateType;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.Objects;

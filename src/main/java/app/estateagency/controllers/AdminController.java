@@ -5,7 +5,7 @@ import app.estateagency.dto.response.Response;
 import app.estateagency.enums.Privilege;
 import app.estateagency.security.RequiredPrivilege;
 import app.estateagency.services.AdminService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

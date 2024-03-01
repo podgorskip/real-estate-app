@@ -5,7 +5,7 @@ import app.estateagency.dto.response.Response;
 import app.estateagency.jpa.entities.Agent;
 import app.estateagency.jpa.entities.Calendar;
 import app.estateagency.jpa.repositories.CalendarRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

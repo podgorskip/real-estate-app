@@ -10,7 +10,7 @@ import app.estateagency.security.RequiredPrivilege;
 import app.estateagency.services.CustomerService;
 import app.estateagency.services.OwnerService;
 import app.estateagency.services.UserService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

@@ -1,7 +1,7 @@
 package app.estateagency.jpa.entities;
 
 import app.estateagency.enums.Role;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 @Entity

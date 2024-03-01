@@ -25,6 +25,7 @@ public class OfferService {
     private final CustomerService customerService;
     private final ArchivedOfferService archivedOfferService;
     private final OfferVisitService offerVisitService;
+    private final CreditWorthinessAssessmentService creditWorthinessAssessmentService;
 
     /**
      * Allows an agent to post an offer for the estate owners reported.
@@ -222,6 +223,27 @@ public class OfferService {
         offerVisitService.addOfferVisit(customer.get(), offer.get());
 
         return offer;
+    }
+
+    /**
+     * Allows to check if a customer is eligible for a credit which amount is the offer price
+     * @param username Username of the customer who checks creditworthiness
+     * @param id ID of the offer to which worthiness is compared
+     * @return true/false if customer has/doesn't have credibility, empty if the customer/offer is not found
+     */
+    public Optional<Boolean> checkCreditWorthinessForEstatePrice(String username, Long id) {
+        Optional<Customer> customer = customerService.getByUsername(username);
+        Optional<Offer> offer = offerRepository.findById(id);
+
+        if (customer.isEmpty() || offer.isEmpty())
+            return Optional.empty();
+
+        Double creditWorthiness = creditWorthinessAssessmentService.assess(customer.get().getCreditWorthinessInfo());
+
+        if (creditWorthiness.isNaN())
+            return Optional.of(false);
+
+        return Optional.of(creditWorthiness > offer.get().getPrice());
     }
 
     /**

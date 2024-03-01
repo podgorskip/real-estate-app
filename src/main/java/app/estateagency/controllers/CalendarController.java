@@ -8,7 +8,7 @@ import app.estateagency.enums.Privilege;
 import app.estateagency.jpa.entities.Calendar;
 import app.estateagency.security.RequiredPrivilege;
 import app.estateagency.services.CalendarService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

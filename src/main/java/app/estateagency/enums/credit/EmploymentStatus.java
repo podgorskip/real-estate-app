@@ -1,5 +1,7 @@
 package app.estateagency.enums.credit;
 
-public enum EmploymentStatus {
+import java.io.Serializable;
+
+public enum EmploymentStatus implements Serializable {
     EMPLOYED, UNEMPLOYED, SELF_EMPLOYED, RETIRED, STUDENT, HOMEMAKER, ON_LEAVE
 }

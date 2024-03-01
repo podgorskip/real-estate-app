@@ -26,8 +26,8 @@ public class LoggingAdvice {
         log.info("Endpoint response: " + response.toString());
     }
 
-//    @AfterThrowing(pointcut = "execution(* app.estateagency..*.*(..))", throwing = "exception")
-//    public void logException(JoinPoint joinPoint, Throwable exception) {
-//        log.error("Exception in " + joinPoint.getSignature().toShortString() + ": " + exception.getMessage());
-//    }
+    @AfterThrowing(pointcut = "within(app.estateagency.*)", throwing = "exception")
+    public void logException(JoinPoint joinPoint, Throwable exception) {
+        log.error("Exception in " + joinPoint.getSignature().toShortString() + ": " + exception.getMessage());
+    }
 }

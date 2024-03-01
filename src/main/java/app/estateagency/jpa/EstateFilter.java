@@ -4,7 +4,7 @@ import app.estateagency.enums.estate.Availability;
 import app.estateagency.enums.estate.Condition;
 import app.estateagency.enums.estate.EstateType;
 import app.estateagency.jpa.entities.Estate;
-import jakarta.persistence.criteria.Predicate;
+import javax.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package app.estateagency.enums.credit;
 
-public enum EducationLevel {
+import java.io.Serializable;
+
+public enum EducationLevel implements Serializable {
     NO_FORMAL, PRIMARY, SECONDARY, VOCATIONAL, POST_SECONDARY, GRADUATE
 }

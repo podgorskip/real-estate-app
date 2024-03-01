@@ -30,4 +30,5 @@ public class LoggingAdvice {
     public void logException(JoinPoint joinPoint, Throwable exception) {
         log.error("Exception in " + joinPoint.getSignature().toShortString() + ": " + exception.getMessage());
     }
+
 }

@@ -1,0 +1,44 @@
+.login {
+    display: grid;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 17px;
+}
+
+.login h3 {
+    grid-column: 1 / -1;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.login hr {
+    grid-column: 1 / -1;
+}
+
+form {
+    align-content: flex-start;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px;
+}
+
+.login img {
+    margin-top: 15px;
+    margin-left: 100px;
+}
+
+.signed {
+    grid-column: 2;
+    font-size: 20px;
+    background-color: rgb(48, 48, 48);;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+

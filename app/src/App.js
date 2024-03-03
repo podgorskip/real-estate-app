@@ -1,20 +1,22 @@
 import './App.css';
 import { Route, BrowserRouter as Router, Routes, Link } from 'react-router-dom'
 import { AuthProvider } from './components/AuthContext';
-import Login from './components/Login';
-import Document from './components/Document';
-
+import Navbar from './components/Navbar/Navbar';
+import Login from './components/Login/Login';
+import Footer from './components/Footer/Footer';
+import Register from './components/Register/Register';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <AuthProvider>
-          <Link to='/login-page'>Log in</Link>
+          <Navbar/>
           <Routes>
-            <Route path='/login-page' element={<Login/>}></Route>
-            <Route path='/upload' element={<Document/>}></Route>
+            <Route path='register' element={<Register/>}></Route>
+            <Route path='login' element={<Login/>}></Route>
           </Routes>
+          <Footer/>
         </AuthProvider>
 
       </Router>

@@ -26,19 +26,10 @@ form {
     padding: 30px;
 }
 
-.login img {
-    margin-top: 15px;
-    margin-left: 100px;
-}
-
-.signed {
-    grid-column: 2;
-    font-size: 20px;
-    background-color: rgb(48, 48, 48);;
-    color: white;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
+.login .alert {
+    justify-self: center;
+    width: 300px;
+    
 }
 
 

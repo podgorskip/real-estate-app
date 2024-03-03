@@ -8,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const { setAuthenticatedUser } = useAuth();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loginFailure, setLoginFailure] = useState(false);
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -38,8 +39,11 @@ function Login() {
 
             if (!response.ok) {
                 console.log("Failed to authenticate: " + response.json);
+                setLoginFailure(true);
                 return;
-            }
+            } 
+
+            setIsAuthenticated(true);
 
             setAuthenticatedUser({
                 username: username,
@@ -48,11 +52,14 @@ function Login() {
         }
 
         authenticate();
-        setIsAuthenticated(true);
     }
 
     const clear = (e) => {
         e.preventDefault();
+
+        setIsAuthenticated(false);
+        setIsNotFilled(true);
+        setLoginFailure(false);
 
         if (password !== "" || username !== "") {
             setPassword("");
@@ -75,8 +82,15 @@ function Login() {
                 </div>
             </form>
             {isAuthenticated && (
-                <div className="signed">
-                    <p>You've successfully signed in.</p>
+                <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Well done!</h4>
+                <hr></hr>
+                <p>You successfully signed in.</p>
+                </div>
+            )}
+            {loginFailure && (
+                <div class="alert alert-danger" role="alert">
+                    Authentication failed. Try again.
                 </div>
             )}
         </div>

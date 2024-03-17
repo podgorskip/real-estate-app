@@ -1,0 +1,16 @@
+.estates h2 {
+    margin-top: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.estates {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.estates p::first-letter {
+    font-size: 40px;
+}

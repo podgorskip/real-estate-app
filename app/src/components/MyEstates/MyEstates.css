@@ -1,0 +1,71 @@
+.my-estates {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.my-estates h2 {
+    text-transform: uppercase;
+    font-size: 28px;
+    margin-top: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.my-estates .card {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 550px;
+}
+
+.my-estates .card img {
+    scale: 0.9;
+    margin: 10p;
+}
+
+.carousel {
+    width: 500px;
+    height: 400px;    
+}
+
+.carousel-root {
+    width: 500px;
+    height: 500px;    
+}
+
+.thumbs-wrapper axis-vertical {
+    width: 300px;
+    height: 100px;
+}
+
+.my-estates .reported {
+    margin-top: 40px;
+}
+
+.my-estates .info {
+    margin-top: 50px;
+    align-content: start;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: grid;
+    justify-items: start;
+    grid-template-columns: repeat(3, auto);
+}
+
+.my-estates .info h3, .my-estates .info hr {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.my-estates .description {
+    margin-top: 30px;
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.my-estates .price {
+    margin-top: 30px;
+    grid-column: 1 / -1;
+    justify-self: center;
+}

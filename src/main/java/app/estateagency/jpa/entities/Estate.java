@@ -66,6 +66,9 @@ public class Estate {
     @OneToOne(mappedBy = "estate")
     private ArchivedOffer archivedOffer;
 
+    @Column(name = "is_submitted")
+    private Boolean isSubmitted;
+
     @Override
     public int hashCode() {
         return Objects.hash(id, owner.getUser().getUsername());
@@ -106,5 +109,6 @@ public class Estate {
     @PrePersist
     private void prePersist() {
         postDate = LocalDateTime.now();
+        isSubmitted = false;
     }
 }

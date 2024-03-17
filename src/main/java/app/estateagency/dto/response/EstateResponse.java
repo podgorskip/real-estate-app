@@ -26,4 +26,5 @@ public class EstateResponse {
     private Condition condition;
     private Double offeredPrice;
     private LocalDateTime postDate;
+    private Boolean isSubmitted;
 }

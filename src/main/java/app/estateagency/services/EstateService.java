@@ -33,21 +33,16 @@ public class EstateService {
      * @return Response containing info if successfully reported the offer
      */
     @Transactional
-    public Response reportEstate(String username, EstateRequest estateRequest) {
+    public Optional<Long> reportEstate(String username, EstateRequest estateRequest) {
         Optional<Owner> owner = ownerService.getByUsername(username);
         Optional<Agent> agent = agentService.getByID(estateRequest.getAgent());
 
-        if (owner.isEmpty())
-            return new Response(false, HttpStatus.NOT_FOUND, "No account of the provided username found");
-
-        if (agent.isEmpty())
-            return new Response(false, HttpStatus.NOT_FOUND, "No agent of the provided username found");
+        if (owner.isEmpty() || agent.isEmpty())
+            return Optional.empty();
 
         Estate estate = createEstate(owner.get(), agent.get(), estateRequest);
 
-        estateRepository.save(estate);
-
-        return new Response(true, HttpStatus.CREATED, "Successfully reported the offer");
+        return  Optional.of(estateRepository.save(estate).getId());
     }
 
     /**
@@ -97,6 +92,15 @@ public class EstateService {
 
         return estateRepository.findAll(EstateFilter.filterEstates(type, bathrooms, rooms, garage, storey, location, balcony,
                                         availability, size, condition, priceFrom, priceTo, postFrom, postTo));
+    }
+
+    /**
+     * Retrieves all the estates reported by an owner
+     * @param username Username of the owner
+     * @return List of estates if present
+     */
+    public Optional<List<Estate>> getByOwnerUsername(String username) {
+        return estateRepository.findByOwnerUsername(username);
     }
 
     /**

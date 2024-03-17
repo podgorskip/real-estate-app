@@ -1,0 +1,114 @@
+.report-estate {
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    column-gap: 50px;
+    margin-bottom: 100px;
+}
+
+.report-estate h2 {
+    grid-column: 1 / -1;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+}
+
+.report-estate h6 {
+    grid-column: 1 / -1;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.report-estate hr {
+    grid-column: 1 / -1;
+}
+
+.report-estate ul {
+    list-style: none;
+}
+
+.report-estate input[type='checkbox'] {
+    justify-self: self-start;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    vertical-align: middle;
+}
+
+.custom-checkbox:checked {
+    background-color: #333;
+}
+
+.report-estate input[type='radio'] {
+    cursor: pointer;
+}
+
+.report-estate form div:last-child {
+    display: block;
+}
+
+.report-estate .submit-btn {
+    margin-top: 40px;
+}
+
+.report-estate .btn:last-child {
+    grid-column: 2;
+}
+
+.report-estate .files {
+    grid-column: 1 / -1;
+    justify-content: center;
+    grid-template-columns: auto auto;
+    display: grid;
+    gap: 20px;
+    align-items: center;
+}
+
+.report-estate .files p {
+    grid-column: 1;
+}
+
+.report-estate .files label {
+    grid-column: -1;
+}
+
+
+.report-estate .files label {
+    border: 1px solid rgb(218, 218, 218);
+    text-align: center;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.report-estate .files label:hover {
+    border: 1px solid rgb(113, 113, 113);
+    cursor: pointer;
+}
+
+.report-estate .file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+
+.report-estate .files .added-file {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.report-estate .files .added-file button {
+    width: 30px;
+    text-align: center;
+    height: 30px;
+    padding: 0px;
+}

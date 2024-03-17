@@ -1,9 +1,11 @@
 package app.estateagency.controllers;
 
+import app.estateagency.dto.Mapper;
 import app.estateagency.dto.request.CredentialsUpdateRequest;
 import app.estateagency.dto.request.PasswordUpdateRequest;
 import app.estateagency.dto.request.UserRequest;
 import app.estateagency.dto.response.Response;
+import app.estateagency.dto.response.UserDetailsResponse;
 import app.estateagency.enums.Privilege;
 import app.estateagency.security.DatabaseUserDetails;
 import app.estateagency.security.RequiredPrivilege;
@@ -12,6 +14,7 @@ import app.estateagency.services.OwnerService;
 import app.estateagency.services.UserService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,5 +38,17 @@ public class UserController {
     public ResponseEntity<Response> updatePassword(@AuthenticationPrincipal UserDetails userDetails, @Valid @RequestBody PasswordUpdateRequest passwordUpdateRequest) {
         Response response = userService.updatePassword(userDetails.getUsername(), passwordUpdateRequest);
         return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+    @RequiredPrivilege(Privilege.CHECK_DETAILS)
+    @GetMapping("/user-details")
+    public ResponseEntity<UserDetailsResponse> checkUserDetails(@AuthenticationPrincipal UserDetails userDetails) {
+        return userService.getByUsername(userDetails.getUsername())
+                .map(user -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(Mapper.INSTANCE.convertUserDetails(user)))
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .build());
     }
 }

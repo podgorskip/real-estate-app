@@ -2,7 +2,6 @@
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(3, auto);
-    text-transform: uppercase;
     justify-content: space-between;
     background-color: rgb(255, 255, 255);
     font-size: 20px;
@@ -24,12 +23,14 @@
 }
 
 .navbar h3 {
+    text-transform: uppercase;
     font-size: 30px;
     letter-spacing: 3px;
     font-family: 'Montserrat';
 }
 
 .navbar a:link, a:focus, a:active, a:visited {
+    padding: 10px;
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
@@ -46,3 +47,8 @@
     justify-content: center;
     align-items: center;
 }
+
+.disabled-link {
+    pointer-events: none;
+}
+  

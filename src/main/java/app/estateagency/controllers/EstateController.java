@@ -35,9 +35,9 @@ public class EstateController {
      */
     @RequiredPrivilege(Privilege.REPORT_OFFER)
     @PostMapping("/owner/report-offer")
-    public ResponseEntity<Response> reportOffer(@AuthenticationPrincipal UserDetails userDetails, @Valid @RequestBody EstateRequest estateRequest) {
-        Response response = estateService.reportEstate(userDetails.getUsername(), estateRequest);
-        return ResponseEntity.status(response.getStatus()).body(response);
+    public ResponseEntity<Long> reportOffer(@AuthenticationPrincipal UserDetails userDetails, @Valid @RequestBody EstateRequest estateRequest) {
+        Optional<Long> id = estateService.reportEstate(userDetails.getUsername(), estateRequest);
+        return id.map(aLong -> ResponseEntity.status(HttpStatus.CREATED).body(aLong)).orElseGet(() -> ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
     }
 
     /**
@@ -54,6 +54,24 @@ public class EstateController {
                 .map(estateList -> ResponseEntity
                         .status(HttpStatus.OK)
                         .body(estateList.stream().map(Mapper.INSTANCE::convertEstate).toList()))
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .build());
+    }
+
+    /**
+     * Allows owners to check their reported estates
+     * @param userDetails Details of the owner who checks the estates
+     * @return Response containing list of estates if present
+     */
+    @RequiredPrivilege(Privilege.REPORT_OFFER)
+    @GetMapping("/owner/my-estates")
+    public ResponseEntity<List<EstateResponse>> checkMyEstates(@AuthenticationPrincipal UserDetails userDetails) {
+        Optional<List<Estate>> optionalEstates = estateService.getByOwnerUsername(userDetails.getUsername());
+
+        return optionalEstates.map(estates -> ResponseEntity
+                .status(HttpStatus.OK)
+                .body(estates.stream().map(Mapper.INSTANCE::convertEstate).toList()))
                 .orElseGet(() -> ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .build());

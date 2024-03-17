@@ -50,7 +50,7 @@ public class DocumentController {
      * @return Response containing the document data if present
      */
     @RequiredPrivilege(Privilege.CHECK_DOCUMENTS)
-    @GetMapping("/agent/documents")
+    @GetMapping("/documents")
     public ResponseEntity<InputStreamResource> checkDocument(@AuthenticationPrincipal UserDetails userDetails, @RequestParam("id") Long id) {
         Optional<InputStream> documentData = documentService.getDocumentData(id);
 

@@ -11,6 +11,8 @@ function Register() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [role, setRole] = useState("");
+    const [registrationFailure, setRegistrationFailure] = useState(false);
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
     const isAnyFieldEmpty = () => {
         return !(
@@ -67,8 +69,11 @@ function Register() {
 
             if (!response.ok) {
                 console.log("Failed to register");
+                setRegistrationFailure(true);
                 return;
             }
+
+            setRegistrationSuccess(true);
         }
 
         register();
@@ -89,26 +94,40 @@ function Register() {
                 <input type='password' id='fPassword' name='fPassword' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 <label htmlFor='rPassword'>Repeat password</label>
                 <input type='password' id='rPassword' name='rPassword' value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}></input>
-                {!passwordMatch && (<p>Passwords are not the same</p>)}
+                {!passwordMatch && (
+                    <div class="alert alert-danger" role="alert">
+                        <p>You successfully signed in.</p>
+                    </div>
+                )}
                 <label htmlFor='email'>Email</label>
                 <input type='email' id='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)}></input>
                 <label htmlFor='phoneNumber'>Phone number</label>
                 <input type='tel' id='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} pattern='[0-9]{3} [0-9]{3} [0-9]{3}'></input>
                 <label>Account type</label>
                 <div className='checkboxes'>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="customer" value="customer" onChange={(e) => setRole(e.target.value)}/>
-                        <label class="form-check-label" for="exampleRadios1">Customer</label>
+                    <div>
+                        <input className="form-check-input" type="radio" name="role" id="customer" value="customer" onChange={(e) => setRole(e.target.value)}/>
+                        <label className="form-check-label" for="customer">Customer</label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="owner" value="owner" onChange={(e) => setRole(e.target.value)}/>
-                        <label class="form-check-label" for="owner">Owner</label>
+                    <div>
+                        <input className="form-check-input" type="radio" name="role" id="owner" value="owner" onChange={(e) => setRole(e.target.value)}/>
+                        <label className="form-check-label" for="owner">Owner</label>
                     </div>
                 </div>
                 <div>
                     <button className='btn btn-dark' onClick={handleSubmit} disabled={isAnyFieldEmpty()}>Submit</button>
                     <button className='btn btn-dark' onClick={handleClear}>Clear</button>
                 </div>
+                {registrationSuccess && (
+                    <div class="alert alert-success" role="alert">
+                        <p>You successfully created account.</p>
+                    </div>
+                )}
+                {registrationFailure && (
+                    <div class="alert alert-danger" role="alert">
+                        <p>Failed to create account.</p>
+                    </div>
+                )}
             </form>
 
         </div>

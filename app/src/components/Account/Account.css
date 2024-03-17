@@ -1,0 +1,6 @@
+.account {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    height: 800px;
+}

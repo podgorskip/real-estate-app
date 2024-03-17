@@ -1,6 +1,7 @@
 import { useAuth } from "../AuthContext";
 import "./Login.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
     const [isNotFilled, setIsNotFilled] = useState(true);
@@ -22,6 +23,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoginFailure(false);
 
         const body = {
             username: username,
@@ -43,12 +45,17 @@ function Login() {
                 return;
             } 
 
+            const data = await response.json();
+
             setIsAuthenticated(true);
 
             setAuthenticatedUser({
                 username: username,
-                token: response.token
+                token: data.token
             });
+
+            const accountButton = document.getElementById("account");
+            accountButton.classList.remove("disabled-link");
         }
 
         authenticate();
@@ -83,9 +90,9 @@ function Login() {
             </form>
             {isAuthenticated && (
                 <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Well done!</h4>
-                <hr></hr>
-                <p>You successfully signed in.</p>
+                    <p>You successfully signed in.</p>
+                    <hr></hr>
+                    <p>Manage your account <Link to='/account'>here</Link></p>
                 </div>
             )}
             {loginFailure && (

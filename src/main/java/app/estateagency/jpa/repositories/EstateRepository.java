@@ -41,4 +41,13 @@ public interface EstateRepository extends JpaRepository<Estate, Long> {
      * @return List of estates if are present, empty otherwise
      */
     Optional<List<Estate>> findAll(Specification<Estate> specification);
+
+    /**
+     * Retrieves all the estates for the specified owner
+     * @param username Username of the owner
+     * @return List of estates if present, empty otherwise
+     */
+    @Query("SELECT e FROM Estate e " +
+            "WHERE e.owner.user.username = :username")
+    Optional<List<Estate>> findByOwnerUsername(@Param("username") String username);
 }

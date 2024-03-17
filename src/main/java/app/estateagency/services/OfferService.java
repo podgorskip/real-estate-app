@@ -35,12 +35,15 @@ public class OfferService {
      */
     @Transactional
     public Response postOffer(Long id, OfferRequest offerRequest) {
-        Optional<Estate> estate = estateService.getByID(id);
+        Optional<Estate> optionalEstate = estateService.getByID(id);
 
-        if (estate.isEmpty())
+        if (optionalEstate.isEmpty())
             return new Response(false, HttpStatus.NOT_FOUND, "NO estate of the provided ID found");
 
-        offerRepository.save(createOffer(estate.get(), offerRequest));
+        Estate estate = optionalEstate.get();
+
+        offerRepository.save(createOffer(estate, offerRequest));
+        estate.setIsSubmitted(true);
 
         return new Response(true, HttpStatus.CREATED, "Successfully posted the offer");
     }

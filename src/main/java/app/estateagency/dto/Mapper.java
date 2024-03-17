@@ -72,4 +72,6 @@ public interface Mapper {
     @Mapping(source = "review.user.fullName", target = "reviewer")
     @Mapping(source = "review.archivedOffer.id", target = "archivedOfferID")
     ReviewResponse convertReview(Review review);
+
+    UserDetailsResponse convertUserDetails(User user);
 }

@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import logo from '../logo.png'
+import logo from './logo.png'
 
 function Navbar() {
     return (
         <div className='navbar'>
             <ul>
                 <li><Link to="/homepage">Home</Link></li>
-                <li><Link to="#">Agents</Link></li>
+                <li><Link to="/agents">Agents</Link></li>
                 <li><Link to="/estates">Estates</Link></li>
             </ul>
             <div>
-                <img src={logo} alt='logo' width={50} height={50}></img>
-                <h3>Noble Nest</h3>
+                <img src={logo} alt='logo' width={100} height={50}></img>
             </div>
             <ul>
                 <li><Link to="/register">Register</Link></li>

@@ -1,0 +1,93 @@
+.agents {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+    display: grid;
+    gap: 10px;
+}
+
+.agents h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 27px;
+    letter-spacing: 2px;
+}
+
+.agents p {
+    font-size: 18px;
+}
+
+.agents p::first-letter {
+    font-size: 40px;
+}
+
+.agents .review {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+
+.agents .review h5 {
+    font-size: 18px;
+    text-align: left;
+}
+
+.agents .review h6 {
+    font-size: 15px;
+    text-align: left;
+}
+
+.agents .actions {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 100px;
+    justify-content: center;
+}
+
+.agents .actions {
+    font-weight: 510;
+}
+
+.agents .actions img {
+    margin-right: 10px;
+}
+
+.agents a:link, .agents a:visited {
+    color: rgb(115, 115, 115);
+    text-decoration: none;
+}
+
+.agents a:hover, .agents a:active  {
+    color: black;
+    cursor: pointer;
+}
+
+.agents .available-slots {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    column-gap: 80px;
+    row-gap: 20px;
+}
+
+.agents .available-slots button {
+    padding: 0;
+    color: white;
+    background-color: rgba(39, 39, 39, 0.771);
+}
+
+.agents .available-slots button:focus, .agents .available-slots button:hover {
+    padding: 0;
+    color: white;
+    background-color: rgb(47, 47, 47);
+}
+
+.agents .available-slots .slot {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+}

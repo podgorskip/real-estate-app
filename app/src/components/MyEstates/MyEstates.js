@@ -4,6 +4,13 @@ import "./MyEstates.css";
 import JSZip from 'jszip';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import size from './size.png';
+import bathroom from './bathroom.png';
+import garage from './garage.png';
+import room from './room.png';
+import balcony from './balcony.png';
+import storey from './storey.png';
+import status from './status.png';
 
 function MyEstates() {
     const { authenticatedUser } = useAuth();
@@ -78,6 +85,10 @@ function MyEstates() {
 
     }, [authenticatedUser]);
 
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
 
      return (
         <div className="my-estates">
@@ -97,22 +108,24 @@ function MyEstates() {
                         <div/>
                         </div>
                         <div className="info">
-                            <h3 className="lead">{estate.data.location}</h3>
-                            <hr/>
-                            {!estate.data.isSubmitted ? (<p>Status: waiting</p>) : (<p>Status: submitted</p>)}
-                            <p>Agent: {estate.data.agent}</p>
-                            <p>Type: {estate.data.type.toLowerCase()}</p>
-                            <p>Availability: {estate.data.availability.toLowerCase().replace("_", " ")}</p>
-                            <p>Condition: {estate.data.condition.toLowerCase().replace("_", " ")}</p>
-                            <p>Bathrooms: {estate.data.bathrooms}</p>
-                            <p>Rooms: {estate.data.rooms}</p>
-                            <p>Garage: {estate.data.garage == true ? "included" : "not included"}</p>
-                            <p>Balcony: {estate.data.balcony == true ? "included" : "not included"}</p>
-                            <p>Storey: {estate.data.storey}</p>
-                            <p>Size: {estate.data.size} m²</p>
-                            <p className="description">Description: {estate.data.description}</p>
-                            <p className="price">Offered price: <strong>{estate.data.offeredPrice}$</strong></p>
-
+                            <div>
+                                <div className="header">
+                                    <h2>{estate.data.location}</h2>
+                                    <h6><img src={status} width='20' height='20'/>{!estate.data.isSubmitted ? (<p>Status: waiting</p>) : (<p>Status: submitted</p>)}</h6>
+                                </div>
+                                <p>{estate.data.type.toLowerCase().replace("_", " ")} &bull;</p>
+                                <p>{estate.data.availability.toLowerCase().replace("_", " ")} &bull;</p>
+                                <p>{estate.data.condition.toLowerCase().replace("_", " ")}</p> 
+                                <hr></hr>
+                            </div>
+                            <p><img src={bathroom} width='40' height='40'/><span>{estate.data.bathrooms}</span> bathrooms</p>
+                            <p><img src={room} width='40' height='40'/><span>{estate.data.rooms}</span> rooms</p>
+                            <p><img src={garage} width='40' height='40'/>Garage {estate.data.garage == true ? "included" : "not included"}</p>
+                            <p><img src={storey} width='40' height='40'/><span>{estate.data.storey}</span> {estate.data.storey === 1 ? "storey" : "storeys"}</p>
+                            <p><img src={size} width='40' height='40'/><span>{estate.data.size} m²</span> surface</p>
+                            <p><img src={balcony} width='40' height='40'/>Balcony {estate.data.balcony == true ? "included" : "not included"}</p>
+                            <p className="description"><em>{estate.data.description}</em></p>
+                            <p className="price">${numberWithCommas(estate.data.offeredPrice)}</p>
                         </div>
                     </div>
                 ))}

@@ -1,0 +1,90 @@
+.reported-offers {
+    margin: 40px 40px;
+}  
+
+.reported-offers .offers {
+    margin-top: 50px;
+    display: grid;
+    gap:  50px;
+}
+
+.reported-offers .estate {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 50px;
+}
+
+.reported-offers .estate .info {
+    grid-column: 2;
+    display: grid;
+    justify-content: start;
+    gap: 10px;
+}
+
+.reported-offers .estate h4 {
+    font-weight: 550;
+}
+
+.reported-offers .estate .manage {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: 20px;
+    grid-column: 2;
+}
+
+.reported-offers .estate .info .header {
+    display:  grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.reported-offers .estate .info .header p {
+    margin-right: 7px;
+    font-weight: 520;
+    text-transform: uppercase;
+}
+
+
+.reported-offers .estate .info .parameters {
+    font-size: 17px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 30px;
+}
+
+.reported-offers .estate .info span {
+    font-weight: 540;
+}
+
+
+.reported-offers .desc {
+    margin-top: 20px;
+}
+
+.reported-offers .confirm {
+    background-color: rgb(46, 46, 46);
+    color: white;
+}
+
+.reported-offers .confirm:focus, .reported-offers .confirm:hover {
+    background-color: rgb(107, 107, 107);
+    color: white;
+}
+
+.reported-offers .reject {
+    border: solid 1px rgb(46, 46, 46);
+}
+
+.reported-offers .reject:hover, .reported-offers .reject:focus {
+    background-color: rgb(107, 107, 107);
+    color: white;
+}
+
+.reported-offers input[type='text'] {
+    width: 400px;
+    margin-bottom: 15px;
+}
+
+.reported-offers hr {
+    grid-column: 1 / -1;
+}

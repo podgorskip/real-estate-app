@@ -46,8 +46,8 @@ public class CalendarController {
      * @param id ID of the agent to have the calendar checked
      * @return List of available meetings is present
      */
-    @RequiredPrivilege(Privilege.CHECK_CALENDAR)
-    @GetMapping("/calendar")
+//    @RequiredPrivilege(Privilege.CHECK_CALENDAR)
+    @GetMapping("/auth/calendar")
     public ResponseEntity<List<CalendarResponse>> checkAgentCalendar(@AuthenticationPrincipal UserDetails userDetails, @RequestParam("id") Long id) {
         Optional<List<Calendar>> optionalCalendars = calendarService.checkAgentCalendar(id);
 

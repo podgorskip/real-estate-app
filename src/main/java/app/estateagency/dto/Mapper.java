@@ -46,6 +46,7 @@ public interface Mapper {
 
     @Mapping(source = "offer.estate.location", target = "location")
     @Mapping(source = "offer.estate.availability", target = "availability")
+    @Mapping(source = "offer.estate.id", target = "estateID")
     OfferPreviewResponse convertOfferPreview(Offer offer);
 
     @Mapping(source = "archivedOffer.estate.agent.id", target = "agentID")

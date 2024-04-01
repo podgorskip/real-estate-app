@@ -14,7 +14,7 @@
 .my-estates .card {
     display: grid;
     grid-template-columns: auto auto;
-    height: 550px;
+    height: 600px;
 }
 
 .my-estates .card img {
@@ -42,6 +42,7 @@
 }
 
 .my-estates .info {
+    scale: 1.15;
     margin-top: 50px;
     align-content: start;
     padding-left: 30px;
@@ -51,21 +52,55 @@
     grid-template-columns: repeat(3, auto);
 }
 
-.my-estates .info h3, .my-estates .info hr {
+.my-estates .info div h2 {
+    display: inline;
+    font-weight: 550;
     text-transform: uppercase;
     letter-spacing: 2px;
     grid-column: 1 / -1;
-    justify-self: center;
+    text-align: left;
 }
 
 .my-estates .description {
     margin-top: 30px;
+    font-size: 17px;
     grid-column: 1 / -1;
-    justify-self: center;
 }
 
 .my-estates .price {
-    margin-top: 30px;
     grid-column: 1 / -1;
-    justify-self: center;
+    font-size: 30px;
+    font-weight: 500;
 }
+
+.my-estates p span {
+    font-weight: 600;
+}
+
+.my-estates p {
+    display: inline;
+}
+
+.my-estates .info img {
+    margin-right: 10px;
+}
+
+.my-estates .info div {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+}
+
+.my-estates .info div p {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-weight: 550;
+    color: rgb(111, 111, 111);
+}
+
+.my-estates .info .header {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+

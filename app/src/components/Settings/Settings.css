@@ -1,0 +1,59 @@
+.settings {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.settings .account-info img {
+    width: 120px;
+    height: 120px;
+}
+
+.settings .account-info {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-content: center;
+    gap: 50px;
+}
+
+.settings .account-info .info {
+    margin-top: 8px;
+}
+
+.settings .edit-credentials {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 100px;
+    row-gap: 30px;
+}
+
+.settings .edit-credentials .credentials div, .settings .edit-credentials .password div {
+    display: grid;
+    margin-bottom: 15px;
+}
+
+.settings .edit-credentials img {
+    width: 25px;
+    height: 25px;
+}
+
+.settings .edit-credentials .header {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+    justify-content: start;
+    align-content: center;
+}
+
+.settings .edit-credentials button {
+    margin-top: 30px;
+}
+
+.settings .alert {
+    grid-column: 1 / -1;
+    justify-self: center;
+}

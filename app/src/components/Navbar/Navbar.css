@@ -7,6 +7,7 @@
     font-size: 20px;
     box-shadow: 10px -5px 20px rgba(0, 0, 0, 0.1);
     align-items: center;
+    font-weight: 520;
 }
 
 .navbar ul {
@@ -22,22 +23,14 @@
    padding: 10px;
 }
 
-.navbar h3 {
-    text-transform: uppercase;
-    font-size: 30px;
-    letter-spacing: 3px;
-    font-family: 'Montserrat';
-}
-
-.navbar a:link, a:focus, a:active, a:visited {
+.navbar a:link, .navbar a:focus, .navbar a:active, .navbar a:visited {
     padding: 10px;
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(165, 165, 165);
 }
 
-.navbar li:hover {
-    border-radius: 10px;
-    background-color: rgb(232, 232, 232);
+.navbar a:hover {
+    color: rgb(0, 0, 0);
 }
 
 .navbar div {
@@ -51,4 +44,3 @@
 .disabled-link {
     pointer-events: none;
 }
-  

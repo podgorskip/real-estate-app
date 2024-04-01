@@ -1,0 +1,73 @@
+.meeting-slots {
+    display: grid;
+    padding: 40px;
+    justify-content: center;
+}
+
+.meeting-slots h1 {
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.meeting-slots p {
+    font-size: 17px;
+}
+
+.meeting-slots .adder {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.meeting-slots .date {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;   
+}
+
+.meeting-slots button {
+    padding: 2;
+}
+
+.meeting-slots .slots {
+    display:  grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    column-gap: 50px;
+    row-gap: 20px;
+}
+
+.meeting-slots .slots h6, .meeting-slots .slots hr {
+    font-size: 17px;
+    grid-column: 1 / -1;
+    text-align: center;
+}
+.meeting-slots .slots button {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.meeting-slots .alert {
+    margin-top: 30px;
+    padding: 5px;
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.meeting-slots .info {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 40px;
+    align-content: center;
+}

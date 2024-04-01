@@ -45,13 +45,19 @@ function AccountSideBar() {
                 )}
                 {role === "AGENT" && (
                     <>
-                        <li><Link path='/reported-offers'>Reported</Link></li>
-                        <li><Link path='/manage-offers'>Manage</Link></li>
+                        <li><Link to='/add-slots'>Add</Link></li>
+                        <li><Link to='/reported-offers'>Reported</Link></li>
+                        <li><Link to='/manage-offers'>Manage</Link></li>
                     </>
                 )}
                 {role === "ADMIN" && (
                     <div>
                     </div>
+                )}
+                {role === "CUSTOMER" || role === "OWNER" && (
+                    <>
+                    <li><Link path='/schedule-meeting'>Meetings</Link></li>
+                    </>
                 )}
                 <li><Link path='settings'>Settings</Link></li>
             </ul>

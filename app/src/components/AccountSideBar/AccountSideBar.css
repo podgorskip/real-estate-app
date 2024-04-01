@@ -5,6 +5,7 @@
     height: 800px;
     box-shadow: 10px -5px 20px rgba(0, 0, 0, 0.1);
     background-color: white;
+    font-weight: 520;
 }
 
 .sidebar ul {
@@ -17,13 +18,12 @@
     padding: 10px;
 }
 
-.sidebar a:link, a:focus, a:active, a:visited {
+.sidebar a:link, .sidebar a:focus, .sidebar a:active, .sidebar a:visited {
     padding: 10px;
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(165, 165, 165);
 }
 
-.sidebar li:hover {
-    border-radius: 10px;
-    background-color: rgb(232, 232, 232);
+.sidebar a:hover {
+    color: rgb(0, 0, 0);
 }

@@ -1,6 +1,81 @@
 .account {
     display: grid;
-    grid-template-columns: auto 1fr;
     gap: 20px;
-    height: 800px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+
+.account h2 {
+    margin-top: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 27px;
+    text-align: center;
+}
+
+.account p {
+    line-height: 2;
+}
+
+.account .actions {
+    justify-self: center;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 50px;
+}
+
+.account .actions .action {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.account .actions a:link, .account .actions a:visited {
+    color: rgb(105, 105, 105);
+    text-decoration: none;
+    font-weight: 520;
+    text-transform: uppercase;
+}
+
+.account .actions a:hover, .account .actions a:focus {
+    color: rgb(0, 0, 0);
+}
+
+.account hr, .account .meetings {
+    grid-column: 1 / -1;
+}
+
+.account .actions .action img {
+    width: 80px;
+    height: 80px;
+}
+
+.account .meetings {
+    margin-left: 50px;
+    margin-right: 50px;
+    display: grid;
+    gap: 100px;
+    justify-content: center;
+    grid-template-columns: auto 1fr;
+}
+
+.account .meetings img {
+    margin-top: 50px;
+    width: 80px;
+    height: 80px;
+    grid-column: 1;
+    grid-row: 1 / -1;
+}
+
+.meetings .meeting-card {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
+
+.meetings .meeting-card h5 {
+    font-weight: 510;
 }

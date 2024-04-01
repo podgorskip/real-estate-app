@@ -114,7 +114,7 @@ function Register() {
                         <label className="form-check-label" for="owner">Owner</label>
                     </div>
                 </div>
-                <div>
+                <div className='buttons'>
                     <button className='btn btn-dark' onClick={handleSubmit} disabled={isAnyFieldEmpty()}>Submit</button>
                     <button className='btn btn-dark' onClick={handleClear}>Clear</button>
                 </div>

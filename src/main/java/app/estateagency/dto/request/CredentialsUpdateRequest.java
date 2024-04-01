@@ -13,13 +13,13 @@ public class CredentialsUpdateRequest {
     @Size(max = 100, message = "Last name cannot be longer than 100 characters")
     private String lastName;
 
-    @Size(max = 50, min = 5, message = "Username cannot be longer than 50 or shorter than 5 characters")
+    //@Size(max = 50, min = 5, message = "Username cannot be longer than 50 or shorter than 5 characters")
     private String username;
 
-    @Email(message = "Incorrect email format")
+    //@Email(message = "Incorrect email format")
     @Size(max = 50, message = "Email cannot be longer than 50 characters")
     private String email;
 
-    @Pattern(regexp = "[0-9]{3} [0-9]{3} [0-9]{3}", message = "Phone number should align with format xxx xxx xxx")
+    //@Pattern(regexp = "[0-9]{3} [0-9]{3} [0-9]{3}", message = "Phone number should align with format xxx xxx xxx")
     private String phoneNumber;
 }

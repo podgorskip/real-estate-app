@@ -2,7 +2,8 @@
     margin-top: 40px;
     text-align: center;
     text-transform: uppercase;
-    font-size: 25px;
+    letter-spacing: 2px;
+    font-size: 30px;
     margin-bottom: 20px;
 }
 
@@ -11,6 +12,86 @@
     margin-right: 40px;
 }
 
-.estates p::first-letter {
-    font-size: 40px;
+.estates p {
+    line-height: 2;
+}
+
+.estates ul {
+    list-style: none;
+}
+
+.estates .estate-photo {
+    width: 500px;
+}
+
+.estates .card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 80px;
+    padding-right: 80px;
+    text-align: left;
+}
+
+.estates .card h3 {
+    font-size: 28px;
+    margin-top: 20px;
+    font-weight: 510;
+    text-transform: uppercase;
+}
+
+.estates .card h4 {
+    font-size: 33px;
+}
+
+.estates .card .info {
+    display: grid;
+    gap: 15px;
+    align-items: center;
+    align-content: start;
+}
+
+.estates a {
+    color: black;
+    text-decoration: none;
+}
+
+.estates button:hover, .estates button:focus {
+    border: solid 1px black;
+}
+
+.estates .buttons {
+    align-self: end;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.estates .filters {
+    margin-bottom: 30px;
+}
+
+.estates .filters .selectors {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-around;
+}
+
+.estates select, .estates input[type='checkbox'] {
+    scale: 1.2;
+}
+
+.estates label {
+    margin-right: 10px;
+}
+
+.estates .col {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
+
+.estates .sel {
+    display: grid;
+    gap: 20px;
 }

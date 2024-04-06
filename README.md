@@ -7,12 +7,44 @@
 ## Table of Contents
 - [Key features](#key-features)
 - [Application preview](#application-preview)
+- [Technologies used](#technologies-used)
 
 ## Introduction
 
 NobleNest is a comprehensive software solution designed to streamline the operations of a real estate agency. It offers a range of functionalities to manage properties, clients, agents, and transactions efficiently. 
 
 ## Key Features
+
+1. **Property Browsing with Filters**:
+   - Customers can browse property offers with advanced filtering options including location, price range, size, amenities, and property type.
+
+2. **Add to Favorites**:
+   - Customers can add preferred properties to their favorites list for easy access and tracking.
+
+3. **Reservation Priority**:
+   - Customers can reserve properties they are interested in, giving them priority status in the booking process.
+
+4. **Offer Tracking and Popularity**:
+   - The system tracks customer interactions with offers, providing insights into offer popularity and customer preferences.
+
+5. **Past Transaction Review**:
+   - Customers can review their past property transactions within the platform, including details of properties bought, sold, or rented.
+
+6. **Reviews and Ratings**:
+   - Customers can give reviews and ratings for properties, agents, and their overall experience with the system.
+
+7. **Agent Management**:
+   - Agents can manage reserved offers, finalize deals, and post new property offers on behalf of property owners.
+
+8. **Meeting Booking**:
+   - Customers can book meetings with agents to view properties, ask questions, and discuss offers.
+
+9. **Machine Learning Creditworthiness Assessment**:
+   - The system utilizes machine learning algorithms to assess the creditworthiness of customers for specific property offers, providing insights to agents and property owners.
+
+10. **Owner Features**:
+    - Owners can schedule meetings with agents, report offers, and track the status of their property listings.
+
 
 ## Application Preview 
 
@@ -59,4 +91,26 @@ NobleNest is a comprehensive software solution designed to streamline the operat
 <img width="1440" alt="agent3" src="https://github.com/podgorskip/NobleNest/assets/115028846/15136749-5276-4b4c-98e7-0298c3e88324">
 <img width="1440" alt="agent4" src="https://github.com/podgorskip/NobleNest/assets/115028846/b4cfe21c-8746-4661-9c1e-1d7cabce0097">
 <img width="1440" alt="agent5" src="https://github.com/podgorskip/NobleNest/assets/115028846/e11f6c67-408c-428e-8c52-c6a4871cb303">
+
+## Technologies Used
+
+### Backend
+
+1. [Java Core](https://docs.oracle.com/en/java/javase/14/docs/api/index.html): The foundational Java programming language features.
+2. [Spring Boot](https://spring.io/projects/spring-boot): Utilized as the primary framework for building the application, including its starter dependencies for data access (Spring Data JPA), security (Spring Security), and web functionality (Spring MVC).
+3. [Apache Spark](https://spark.apache.org/): A unified analytics engine for large-scale data processing, used for big data processing and analytics tasks in the application.
+4. [Scala Library](https://www.scala-lang.org/): A high-level programming language used for functional and object-oriented programming, particularly in the context of Apache Spark.
+5. JSON Web Token (JWT): Included dependencies for implementing JWT-based authentication and authorization within the Spring Security framework.
+6. [Lombok](https://projectlombok.org/): A Java library used to reduce boilerplate code, particularly for generating getters, setters, and constructors.
+7. [MapStruct](https://mapstruct.org/): Used for generating mapping code between different Java bean types.
+8. [Log4j](https://logging.apache.org/log4j/2.x/): Logging framework used for logging within the application.
+9. [Gradle](https://gradle.org): A build and project management tool for Java projects.
+
+### Database
+
+- [PostgreSQL](https://www.postgresql.org/): A powerful, open-source relational database management system.
+
+### Frontend
+
+- [React](https://reactjs.org/): A JavaScript library for building user interfaces.
 

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Data
 public class ArchivedOfferResponse {
     private Long id;
+    private Long estateID;
     private Long agentID;
     private String agent;
     private Long ownerID;
@@ -29,4 +30,5 @@ public class ArchivedOfferResponse {
     private Condition condition;
     private Double price;
     private LocalDateTime archiveDate;
+    private Boolean isReviewed;
 }

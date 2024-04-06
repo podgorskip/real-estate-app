@@ -102,8 +102,9 @@
 .report-estate .files .added-file {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 20px;
+    justify-content: left;
     align-items: center;
+    gap: 10px;
 }
 
 .report-estate .files .added-file button {

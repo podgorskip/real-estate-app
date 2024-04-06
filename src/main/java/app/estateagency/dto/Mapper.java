@@ -42,6 +42,8 @@ public interface Mapper {
     @Mapping(source = "offer.estate.availability", target = "availability")
     @Mapping(source = "offer.estate.size", target = "size")
     @Mapping(source = "offer.estate.condition", target = "condition")
+    @Mapping(source = "offer.estate.id", target = "estateID")
+    @Mapping(source = "offer.blockedBy.user.username", target = "blockedBy")
     OfferResponse convertOffer(Offer offer);
 
     @Mapping(source = "offer.estate.location", target = "location")
@@ -65,6 +67,7 @@ public interface Mapper {
     @Mapping(source = "archivedOffer.estate.availability", target = "availability")
     @Mapping(source = "archivedOffer.estate.size", target = "size")
     @Mapping(source = "archivedOffer.estate.condition", target = "condition")
+    @Mapping(source = "archivedOffer.estate.id", target = "estateID")
     ArchivedOfferResponse convertArchivedOffer(ArchivedOffer archivedOffer);
 
     @Mapping(source = "review.archivedOffer.estate.agent.id", target = "agentID")

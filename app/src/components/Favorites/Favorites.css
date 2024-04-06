@@ -1,0 +1,9 @@
+.favorites {
+    display: grid;
+    margin: 40px 40px;
+}
+
+.favorites .favorites {
+    display: grid;
+    gap: 50px;
+}

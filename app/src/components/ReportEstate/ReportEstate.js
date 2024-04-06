@@ -1,6 +1,7 @@
 import { useAuth } from "../AuthContext";
 import "./ReportEstate.css";
 import { useEffect, useState } from 'react';
+import bullet from './checked.png';
 
 function ReportEstate() {
     const { authenticatedUser } = useAuth();
@@ -271,8 +272,8 @@ function ReportEstate() {
                     </>
                     {isDocumentAdded && (
                         <div className='added-file'>
+                            <img src={bullet} width='20' onClick={() => setDocument(null)}/>
                             {document.name}
-                            <button className="btn btn-dark" onClick={() => setDocument(null)}>x</button>
                         </div>    
                     )}
                     <>
@@ -284,12 +285,15 @@ function ReportEstate() {
                         <label for="photo">Select photo</label>
                     </>
                     {isPhotoAdded && (
-                        photos.map((photo, index) => (
-                        <div key={index} className='added-file'>
-                            {photo.name}
-                            <button className="btn btn-dark" onClick={() => handleDelete(index)}>x</button>
+                        <div>
+                            {photos.map((photo, index) => (
+                                <div key={index} className='added-file'>
+                                    <img src={bullet} width='20' onClick={() => handleDelete(index)}/>
+                                    {photo.name}
+                                </div>
+                            ))}
                         </div>
-                        ))
+                        
                     )}
              
                   

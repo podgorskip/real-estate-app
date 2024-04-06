@@ -49,8 +49,9 @@
 }
 
 .account .actions .action img {
-    width: 80px;
-    height: 80px;
+    margin-left: 3px;
+    width: 75px;
+    height: 75px;
 }
 
 .account .meetings {

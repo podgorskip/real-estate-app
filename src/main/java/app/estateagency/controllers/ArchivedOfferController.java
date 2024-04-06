@@ -34,7 +34,7 @@ public class ArchivedOfferController {
     @RequiredPrivilege(Privilege.CHECK_ARCHIVED_OFFERS)
     @GetMapping("/customer/archived-offers")
     public ResponseEntity<List<ArchivedOfferResponse>> checkArchivedOffersByCustomer(@AuthenticationPrincipal UserDetails userDetails) {
-        Optional<List<ArchivedOffer>> optionalArchivedOffers = archivedOfferService.getCustomerUnreviewedArchivedOffers(userDetails.getUsername());
+        Optional<List<ArchivedOffer>> optionalArchivedOffers = archivedOfferService.getCustomerArchivedOffers(userDetails.getUsername());
 
         return optionalArchivedOffers
                 .map(archivedOffers -> ResponseEntity
@@ -53,7 +53,7 @@ public class ArchivedOfferController {
     @RequiredPrivilege(Privilege.CHECK_ARCHIVED_OFFERS)
     @GetMapping("/owner/archived-offers")
     public ResponseEntity<List<ArchivedOfferResponse>> checkArchivedOffersByOwner(@AuthenticationPrincipal UserDetails userDetails) {
-        Optional<List<ArchivedOffer>> optionalArchivedOffers = archivedOfferService.getOwnerUnreviewedArchivedOffers(userDetails.getUsername());
+        Optional<List<ArchivedOffer>> optionalArchivedOffers = archivedOfferService.getOwnerArchivedOffers(userDetails.getUsername());
 
         return optionalArchivedOffers
                 .map(archivedOffers -> ResponseEntity

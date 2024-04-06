@@ -1,0 +1,97 @@
+.offer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin: 40px 40px;
+    column-gap: 100px;
+}
+
+.offer h2, .offer hr {
+    grid-column: 1 / -1;
+}
+
+.offer .info {
+  
+    justify-content: left;
+}
+
+.offer .info .desc {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.offer .info .desc img {
+    width: 35px;
+}
+
+.offer .info .desc p {
+    margin: 0;
+    padding: 0;
+}
+
+.offer .info h3 {
+    text-transform: uppercase;
+    font-weight: 510;
+}
+
+.offer .info .desc span {
+    font-weight: 520;
+}
+
+.offer .info .header {
+    display:  grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: left;
+}
+
+.offer .info .header p {
+    margin-right: 7px;
+    font-weight: 520;
+    text-transform: uppercase;
+}
+
+.offer button {
+    border: solid 1px black;
+    margin-top: 30px;
+}
+
+.offer button:hover {
+    background-color: rgb(68, 68, 68);
+    color: white;
+}
+
+.offer .info h6 {
+    margin-top: 50px;
+}
+
+.offer .top-bar {
+    display:  grid;
+    grid-template-columns: 1fr auto;
+    gap: 70px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offer .heart:hover {
+    cursor: pointer;
+}
+
+.offer .favorite {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    align-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 7px;
+}
+
+.offer .favorite h5 {
+    margin-top: 5px;
+    font-weight: 510;
+    font-size: 14px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,10 @@
+.offer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin: 40px 40px;
+    column-gap: 100px;
+}
+
+.offer h2, .offer hr {
+    grid-column: 1 / -1;
+}

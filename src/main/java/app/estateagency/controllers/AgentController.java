@@ -9,6 +9,8 @@ import app.estateagency.jpa.entities.Agent;
 import app.estateagency.security.RequiredPrivilege;
 import app.estateagency.services.AgentService;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +54,23 @@ public class AgentController {
                 .map(agentsList -> ResponseEntity
                         .status(HttpStatus.OK)
                         .body(agentsList.stream().map(Mapper.INSTANCE::convertAgent).toList()))
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .build());
+    }
+
+    /**
+     * Allows to retrieve an agent by their ID
+     * @param id ID of the agent to be retrieved
+     * @return Agent entity is present
+     */
+    @GetMapping("/auth/agent")
+    public ResponseEntity<AgentResponse> checkAgent(@NotNull @RequestParam("id") Long id) {
+        Optional<Agent> optionalAgent = agentService.getByID(id);
+
+        return optionalAgent.map(agent -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(Mapper.INSTANCE.convertAgent(agent)))
                 .orElseGet(() -> ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .build());

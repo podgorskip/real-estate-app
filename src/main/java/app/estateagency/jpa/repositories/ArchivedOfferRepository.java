@@ -34,4 +34,22 @@ public interface ArchivedOfferRepository extends JpaRepository<ArchivedOffer, Lo
             "WHERE a.estate.owner.user.username = :username " +
             "AND r IS NULL")
     Optional<List<ArchivedOffer>> findOwnersUnreviewedArchivedOffers(@Param("username") String username);
+
+    /**
+     * Retrieves archived owner's transactions
+     * @param username Username of the owner
+     * @return List of archived offers if present, empty otherwise
+     */
+    @Query("SELECT a FROM ArchivedOffer a " +
+            "WHERE a.estate.owner.user.username = :username")
+    Optional<List<ArchivedOffer>> findOwnersArchivedOffers(@Param("username") String username);
+
+    /**
+     * Retrieves archived customers's transactions
+     * @param username Username of the customer
+     * @return List of archived offers if present, empty otherwise
+     */
+    @Query("SELECT a FROM ArchivedOffer a " +
+            "WHERE a.customer.user.username = :username")
+    Optional<List<ArchivedOffer>> findCustomersArchivedOffers(@Param("username") String username);
 }

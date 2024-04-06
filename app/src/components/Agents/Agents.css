@@ -14,11 +14,7 @@
 }
 
 .agents p {
-    font-size: 18px;
-}
-
-.agents p::first-letter {
-    font-size: 40px;
+    line-height: 2;
 }
 
 .agents .review {
@@ -88,6 +84,7 @@
 
 .agents .available-slots .slot {
     display: grid;
+    grid-template-columns: auto;
     justify-content: center;
     gap: 10px;
 }

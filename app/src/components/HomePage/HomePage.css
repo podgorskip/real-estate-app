@@ -26,7 +26,8 @@
 
 
 .homepage div p {
-    font-size: 20px;
+    font-size: 17px;
+    line-height: 2;
 }
 
 .homepage h2 {

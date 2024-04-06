@@ -111,8 +111,7 @@ function Estates() {
         }));
     }
 
-    const addToFavorites = (e) => {
-        e.preventDefault();
+    const addToFavorites = (id) => {
 
         if (authenticatedUser.token === "") {
             alert("You must log in first.");
@@ -120,7 +119,7 @@ function Estates() {
         }
 
         const add = async () => {
-            const response = await fetch(`/api/customer/add-to-favorites?id=${e.target.value}`, {
+            const response = await fetch(`/api/customer/add-to-favorites?id=${id}`, {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + authenticatedUser.token
@@ -132,7 +131,7 @@ function Estates() {
                 return;
             }
 
-            const image = document.querySelector(`.heart${e.target.value}`);
+            const image = document.querySelector(`.heart${id}`);
 
             if (image) {
                 image.setAttribute('src', redHeart); 
@@ -140,6 +139,13 @@ function Estates() {
         };
 
         add();
+    }
+
+    const onCheckDetailsClick = () => {
+        if (authenticatedUser.token === "") {
+            alert("You must log in first.");
+            return;
+        }
     }
 
     return (
@@ -214,8 +220,8 @@ function Estates() {
                                 <h4>${numberWithCommas(offer.info.price)}</h4>
                                 <p>{offer.info.description}</p>
                                 <div className='buttons'>
-                                    <button className='btn'><Link to={`/check-details/${offer.info.id}`}><img src={details} width='25' height='25'/></Link>Check details</button>
-                                    <button className='btn' value={offer.info.id} onClick={addToFavorites}><img className={'heart' + offer.info.id} src={heart} width='25' height='25'/> Add to favorites</button>
+                                    <button className='btn'><Link to={`/check-details/${offer.info.id}`} onClick={onCheckDetailsClick}><img src={details} width='25' height='25'/></Link>Check details</button>
+                                    <button className='btn' value={offer.id} onClick={() => addToFavorites(offer.info.id)}><img className={'heart' + offer.info.id} src={heart} width='25' height='25'/> Add to favorites</button>
                                 </div>
                                 
                             </div>

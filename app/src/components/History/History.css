@@ -1,3 +1,82 @@
 .history {
     margin: 40px 40px;
 }
+
+.history .info .parameters img {
+    width: 35px;
+}
+
+.history .estate {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    gap: 50px;
+    margin-bottom: 200px;
+}
+
+.history .info {
+    grid-column: 2;
+}
+
+.history .info h4 {
+    text-transform: uppercase;
+    font-weight: 520;
+    font-size: 25px;
+}
+
+.history .info .parameters {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 100px;
+    row-gap: 15px;
+    justify-content: left;
+    font-size: 18px;
+}
+
+.history span {
+    font-weight: 520;
+}
+
+.history .estate .info .header {
+    display:  grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: left;
+}
+
+.history .estate .info .header p {
+    margin-right: 7px;
+    font-weight: 520;
+    text-transform: uppercase;
+}
+
+.history .col {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
+
+.history .income {
+    font-size: 17px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    align-items: center;
+    justify-content: left;
+}
+
+.history button {
+    background-color: rgb(58, 58, 58);
+    margin-top: 50px;
+}
+
+.history button:hover {
+    background-color: rgb(94, 94, 94);
+    margin-top: 50px;
+}
+
+.history a:link, .history a:hover, .history a:visited, .history a:focus {
+    color: white;
+    text-decoration: none;
+}

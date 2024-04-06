@@ -36,12 +36,30 @@ public class ArchivedOfferService {
     }
 
     /**
+     * Retrieves customer's  transactions
+     * @param username Username of the user who retrieves their transactions
+     * @return List of archived offers if present, empty otherwise
+     */
+    public Optional<List<ArchivedOffer>> getCustomerArchivedOffers(String username) {
+        return archivedOfferRepository.findCustomersArchivedOffers(username);
+    }
+
+    /**
      * Retrieves owner's unreviewed transactions
      * @param username Username of the user who retrieves their unreviewed transactions
      * @return List of archived offers if present, empty otherwise
      */
     public Optional<List<ArchivedOffer>> getOwnerUnreviewedArchivedOffers(String username) {
         return archivedOfferRepository.findOwnersUnreviewedArchivedOffers(username);
+    }
+
+    /**
+     * Retrieves owner's transactions
+     * @param username Username of the user who retrieves their transactions
+     * @return List of archived offers if present, empty otherwise
+     */
+    public Optional<List<ArchivedOffer>> getOwnerArchivedOffers(String username) {
+        return archivedOfferRepository.findOwnersArchivedOffers(username);
     }
 
     /**

@@ -66,7 +66,7 @@ function MeetingSlotsAdder() {
                     {slots.map((slot, idx) => (
                         <div className='date'>
                             {new Date(slot).toLocaleString().slice(0, -3)}
-                            <img src={remove} width='35' height='35' onClick={() => handleRemoveSlot(idx)}/>
+                            <img src={remove} width='30' height='30' onClick={() => handleRemoveSlot(idx)}/>
                         </div>
                     ))}
                     <hr></hr>

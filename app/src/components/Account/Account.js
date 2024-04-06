@@ -5,10 +5,9 @@ import estates from './estates.png';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import setting from './settings.png';
-import meeting from './meeting.png';
 import report from './report.png';
 import heart from './heart.png';
-import review from './review.png';
+import padlock from './padlock.png';
 import manage from './manager.png';
 import addEvent from './add-event.png';
 import reported from './reported.png';
@@ -90,11 +89,11 @@ function Account() {
                         <>
                             <div className="action">
                                 <img src={heart}/>
-                                <Link to='/liked-offers'>Favorites</Link>
+                                <Link to='/favorites'>Favorites</Link>
                             </div>
                             <div className="action">
-                                <img src={review}/>
-                                <Link to='/review-offer'>Review</Link>
+                                <img src={padlock}/>
+                                <Link to='/reserved'>Reserved</Link>
                             </div>
                             <div className="action">
                                 <img src={history}/>

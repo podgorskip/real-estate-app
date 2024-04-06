@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class OfferResponse {
     private Long id;
+    private Long estateID;
     private Long agentID;
     private String agent;
     private EstateType type;
@@ -22,4 +23,6 @@ public class OfferResponse {
     private Double size;
     private Condition condition;
     private Double price;
+    private Boolean blocked;
+    private String blockedBy;
 }

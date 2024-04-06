@@ -3,6 +3,7 @@ package app.estateagency.jpa.entities;
 import javax.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "archived_offer", schema = "real_estate")
@@ -28,6 +29,9 @@ public class ArchivedOffer {
 
     @OneToOne(mappedBy = "archivedOffer", cascade = CascadeType.ALL)
     private Review review;
+
+    @Transient
+    private Boolean isReviewed = Objects.nonNull(review);
 
     @PrePersist
     private void prePersist() {

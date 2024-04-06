@@ -18,6 +18,10 @@ import Settings from './components/Settings/Settings';
 import History from './components/History/History';
 import ReportedOffers from './components/ReportedOffers/ReportedOffers';
 import Offer from './components/Offer/Offer';
+import Favorites from './components/Favorites/Favorites';
+import Review from './components/Review/Review';
+import Reserved from './components/Reserved/Reserved';
+import Manage from './components/Manage/Manage';
 
 function App() {
   return (
@@ -41,6 +45,10 @@ function App() {
             <Route path='history/:role' element={<History/>}></Route>
             <Route path='reported-offers' element={<ReportedOffers/>}></Route>
             <Route path='check-details/:id' element={<Offer/>}></Route>
+            <Route path='favorites' element={<Favorites/>}></Route>
+            <Route path='review/:agent/:role/:id' element={<Review/>}></Route>
+            <Route path='reserved' element={<Reserved/>}></Route>
+            <Route path='manage-offers' element={<Manage/>}></Route>
           </Routes>
           <Footer/>
         </AuthProvider>

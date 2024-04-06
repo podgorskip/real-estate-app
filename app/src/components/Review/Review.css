@@ -1,0 +1,29 @@
+.review {
+    display: grid;
+    justify-content: center;
+    margin: 40px 40px;
+    gap: 30px;
+}
+
+.review h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.review .rating {
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    justify-content: center;
+    gap: 10px;
+}
+
+.review input[type='text'] {
+    height: 300px;
+}
+
+.review input[type='text']:focus {
+    border-color: black;
+}
+

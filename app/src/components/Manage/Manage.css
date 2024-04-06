@@ -1,0 +1,64 @@
+.manage-reserved {
+    display: grid;
+    margin: 40px 40px;
+    font-size: 17px;
+}
+
+.manage-reserved .offer {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.manage-reserved  .offer h4 {
+    font-weight: 520;
+}
+
+.manage-reserved  .offer .card {
+    text-align: left;
+}
+
+.manage-reserved  .offer .card img {
+    margin-right: 15px;
+}
+
+.manage-reserved  .offer .card span {
+    font-weight: 520;
+}
+
+.manage-reserved .offer-info {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    justify-content: left;
+    column-gap: 100px;
+    margin-bottom: 20px;
+}
+
+.manage-reserved .capitalize {
+    text-transform: capitalize;
+}
+
+.manage-reserved .buttons {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 20px;
+}
+
+.manage-reserved .finalize {
+    background-color: rgb(54, 54, 54);
+    color: white;
+}
+
+.manage-reserved .finalize:hover {
+    background-color: rgb(98, 98, 98);
+    color: white;
+}
+
+.manage-reserved .cancel {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.manage-reserved .cancel:hover {
+    background-color: rgb(98, 98, 98);
+    color: white;
+ }
